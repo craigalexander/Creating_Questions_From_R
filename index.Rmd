@@ -1,0 +1,33 @@
+--- 
+title: "Using R to generate data for questions"
+author: "Craig Alexander & Eilidh Jack"
+site: bookdown::bookdown_site
+output:
+  bookdown::gitbook:
+    lib_dir: assets
+    split_by: section
+    config:
+      toolbar:
+        position: static
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+---
+```{r setup, include=FALSE}
+library(truncnorm)
+library(tidyverse)
+library(gridExtra)
+```
+
+
+# Overview
+In this session, we will take a look at how we can use R to generate data to create questions similar to those found in the Advanced Higher Statistics Exam papers. This tutorial will work through some examples from Paper 1 from the 2021 exam. You can access the [paper](https://www.sqa.org.uk/sqa/files_ccc/NAH_Statistics_Paper1_2021.pdf) and [solutions](Advanced Higher Statistic marking instructions paper 1) by clicking on the links. 
+
+
+## Libraries
+Throughout this tutorial, we will use some libraries within R. If you would prefer to work through the examples on R, you will need to install the following libraries:
+
+- `tidyverse`
+- `truncnorm`
+

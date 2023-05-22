@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.1 Question 1 | Using R to generate data for questions</title>
+  <meta name="description" content="2.1 Question 1 | Using R to generate data for questions" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.1 Question 1 | Using R to generate data for questions" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.1 Question 1 | Using R to generate data for questions" />
+  
+  
+  
+
+<meta name="author" content="Craig Alexander &amp; Eilidh Jack" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="paper-1-example.html"/>
+<link rel="next" href="regression.html"/>
+<script src="assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="assets/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="assets/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="assets/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>1.1</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="paper-1-example.html"><a href="paper-1-example.html"><i class="fa fa-check"></i><b>2</b> 2021 Paper 1 Example</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="question-1.html"><a href="question-1.html"><i class="fa fa-check"></i><b>2.1</b> Question 1</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="question-1.html"><a href="question-1.html#generating-a-random-sample-of-data"><i class="fa fa-check"></i><b>2.1.1</b> Generating a random sample of data</a></li>
+<li class="chapter" data-level="2.1.2" data-path="question-1.html"><a href="question-1.html#visualising-the-data"><i class="fa fa-check"></i><b>2.1.2</b> Visualising the data</a></li>
+<li class="chapter" data-level="2.1.3" data-path="question-1.html"><a href="question-1.html#setting-random-seeds-for-reproducability"><i class="fa fa-check"></i><b>2.1.3</b> Setting random seeds for reproducability</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>2.2</b> Regression</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Using R to generate data for questions</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="question-1" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Question 1<a href="question-1.html#question-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this example, we will take a look at question 1 from Paper 1 in 2021. This question is a report style question based on Google AI data of times taken to draw a cat or a dog. The example contains a stem and leaf diagram with the combined data and some summary statistics for both sets of drawings. Following this, a Mann-Whitney Test is carried out to test whether both samples have different average drawing times.</p>
+<p>We will now look at how we can draw a sample of the data from the question, by randomly sampling data for both groups using properties from their summary statistics</p>
+<div id="generating-a-random-sample-of-data" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Generating a random sample of data<a href="question-1.html#generating-a-random-sample-of-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can generate a random sample of data for both the categories using the summary statistics provided. As we can see from the stem and leaf diagram, the data have a lower bound, where we cannot observe any data below zero, as the data recorded are based on time elapsed.</p>
+<p>In order to sample data of this form, we can use a variation of the Normal distribution called the <a href="https://en.wikipedia.org/wiki/Truncated_normal_distribution">truncated normal distribution</a>, which allows us to bound a Normal distribution through a given range.</p>
+<p>To randomly sample data from this distribution, we can use the <code>rtruncnorm</code> function from the <code>truncnorm</code> package in R as follows:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="question-1.html#cb1-1" aria-hidden="true" tabindex="-1"></a>sample_dog <span class="ot">&lt;-</span> <span class="fu">rtruncnorm</span>(<span class="at">n=</span><span class="dv">145</span>, <span class="at">a=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">16</span>, <span class="at">mean=</span><span class="fl">7.5</span>, <span class="at">sd=</span><span class="fl">2.66</span>)</span>
+<span id="cb1-2"><a href="question-1.html#cb1-2" aria-hidden="true" tabindex="-1"></a>sample_cat <span class="ot">&lt;-</span> <span class="fu">rtruncnorm</span>(<span class="at">n=</span><span class="dv">121</span>, <span class="at">a=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">14</span>, <span class="at">mean=</span><span class="fl">5.4</span>, <span class="at">sd=</span><span class="fl">2.31</span>)</span></code></pre></div>
+<p>The parameters required are defined as follows:</p>
+<ul>
+<li><code>n</code> - the number of samples we wish to draw</li>
+<li><code>a</code> - the lower bound of the distribution (here, we will set this to 0)</li>
+<li><code>b</code> - the upper bound of the distribution (here, we have set this to be the ceiling of the max value for each group)</li>
+<li><code>mean</code> - the mean of each group</li>
+<li><code>sd</code> - the standard deviation of each group</li>
+</ul>
+<p>Running the code above will produce a sample for both groups based on their relative summary statistics. We can check the summary statistics of our data using <code>summary()</code></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="question-1.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sample_dog)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   1.260   5.420   6.979   7.172   8.846  14.280</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="question-1.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sample_cat)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.5993  4.5442  5.9961  5.8839  6.9648 12.4311</code></pre>
+</div>
+<div id="visualising-the-data" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Visualising the data<a href="question-1.html#visualising-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can also check the distribution of our sampled data for comparison by visualising it using a histogram. The <code>ggplot2</code> library found in the <code>tidyverse</code> library provides several functions for data visualisation and has become more popular than base R graphics. We will use the <code>geom_histogram()</code> function from the library in this example as follows:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="question-1.html#cb6-1" aria-hidden="true" tabindex="-1"></a>dog_hist <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">data.frame</span>(sample_dog),<span class="fu">aes</span>(<span class="at">x=</span>sample_dog)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">fill=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb6-2"><a href="question-1.html#cb6-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Average draw time of dogs&quot;</span>,<span class="at">x=</span><span class="st">&quot;Time (s)&quot;</span>)</span>
+<span id="cb6-3"><a href="question-1.html#cb6-3" aria-hidden="true" tabindex="-1"></a>cat_hist <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">data.frame</span>(sample_cat),<span class="fu">aes</span>(<span class="at">x=</span>sample_cat)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">fill=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb6-4"><a href="question-1.html#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Average draw time of cats&quot;</span>,<span class="at">x=</span><span class="st">&quot;Time (s)&quot;</span>)</span>
+<span id="cb6-5"><a href="question-1.html#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="question-1.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(dog_hist,cat_hist,<span class="at">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="bookdown-demo_files/figure-html/histograms-1.png" width="672" /></p>
+<p>To create these histograms, the code above works in the following fashion:</p>
+<ul>
+<li>We first specify our data using <code>ggplot(data)</code>, where our data here is either group of samples.</li>
+<li>To specify which variables we would like to select, we use the <code>aes()</code> argument. As we only have one sample of data in each case, we specify this using <code>x=data</code>.</li>
+<li>We then generate the histogram using <code>geom_histogram()</code>, where we can define the line colour using <code>color</code> and the filled colour of the bars using <code>fill</code>.</li>
+<li>We can label our plot using the <code>labs</code> argument, where we can include a <code>title</code> and an <code>x</code> axis label</li>
+</ul>
+<p>We can also alter the number of bins we use (<code>ggplot</code> will set a standard number of bins by default) using the <code>bins</code> argument. Let’s alter the number of bins for the dog data to be 10</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="question-1.html#cb8-1" aria-hidden="true" tabindex="-1"></a>dog_hist <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">data.frame</span>(sample_dog),<span class="fu">aes</span>(<span class="at">x=</span>sample_dog)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">fill=</span><span class="st">&quot;white&quot;</span>,<span class="at">bins=</span><span class="dv">10</span>) <span class="sc">+</span> </span>
+<span id="cb8-2"><a href="question-1.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Average draw time of dogs&quot;</span>,<span class="at">x=</span><span class="st">&quot;Time (s)&quot;</span>)</span></code></pre></div>
+</div>
+<div id="setting-random-seeds-for-reproducability" class="section level3 hasAnchor" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Setting random seeds for reproducability<a href="question-1.html#setting-random-seeds-for-reproducability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When we randomly sample data each time in R, we will obtain a different sample than before. Let’s run our previous code twice to see if there is any differences:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="question-1.html#cb9-1" aria-hidden="true" tabindex="-1"></a>sample_dog1 <span class="ot">&lt;-</span> <span class="fu">rtruncnorm</span>(<span class="at">n=</span><span class="dv">145</span>, <span class="at">a=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">16</span>, <span class="at">mean=</span><span class="fl">7.5</span>, <span class="at">sd=</span><span class="fl">2.66</span>)</span>
+<span id="cb9-2"><a href="question-1.html#cb9-2" aria-hidden="true" tabindex="-1"></a>sample_dog2 <span class="ot">&lt;-</span> <span class="fu">rtruncnorm</span>(<span class="at">n=</span><span class="dv">145</span>, <span class="at">a=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">16</span>, <span class="at">mean=</span><span class="fl">7.5</span>, <span class="at">sd=</span><span class="fl">2.66</span>)</span>
+<span id="cb9-3"><a href="question-1.html#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="question-1.html#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sample_dog1)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.4464  5.7736  7.3936  7.5150  9.2837 13.4899</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="question-1.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sample_dog2)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   0.239   5.346   7.562   7.454   9.250  13.457</code></pre>
+<p>We see that both samples produce different summary statistics. This can cause difficulty when you are working on a specific problem and want to design questions around the specific characteristics of the data you have sampled the first time.</p>
+<p>We can force R to use the same random number generation by using the <code>set.seed()</code> function. Here, we specify the seed from the random number generator we want to use each time we generate samples. This number can be any number you wish to choose! The example below highlights how this works:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="question-1.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2023</span>)</span>
+<span id="cb13-2"><a href="question-1.html#cb13-2" aria-hidden="true" tabindex="-1"></a>sample_dog1 <span class="ot">&lt;-</span> <span class="fu">rtruncnorm</span>(<span class="at">n=</span><span class="dv">145</span>, <span class="at">a=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">16</span>, <span class="at">mean=</span><span class="fl">7.5</span>, <span class="at">sd=</span><span class="fl">2.66</span>)</span>
+<span id="cb13-3"><a href="question-1.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2023</span>)</span>
+<span id="cb13-4"><a href="question-1.html#cb13-4" aria-hidden="true" tabindex="-1"></a>sample_dog2 <span class="ot">&lt;-</span> <span class="fu">rtruncnorm</span>(<span class="at">n=</span><span class="dv">145</span>, <span class="at">a=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">16</span>, <span class="at">mean=</span><span class="fl">7.5</span>, <span class="at">sd=</span><span class="fl">2.66</span>)</span>
+<span id="cb13-5"><a href="question-1.html#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="question-1.html#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sample_dog1)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   2.006   6.316   7.545   7.798   9.365  14.776</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="question-1.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sample_dog2)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   2.006   6.316   7.545   7.798   9.365  14.776</code></pre>
+<p>Here, we see we can produce the same data as the first sample by setting the seed prior to sampling.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="paper-1-example.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+},
+"toolbar": {
+"position": "static"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 2 2021 Paper 1 Example | Using R to generate data for questions</title>
+<meta name="author" content="Craig Alexander &amp; Eilidh Jack">
+<meta name="generator" content="bookdown 0.32 with bs4_book()">
+<meta property="og:title" content="Chapter 2 2021 Paper 1 Example | Using R to generate data for questions">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 2 2021 Paper 1 Example | Using R to generate data for questions">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<meta name="description" content="2.1 Question 1 In this example, we will take a look at question 1 from Paper 1 in 2021. This question is a report style question based on Google AI data of times taken to draw a cat or a dog. The...">
+<meta property="og:description" content="2.1 Question 1 In this example, we will take a look at question 1 from Paper 1 in 2021. This question is a report style question based on Google AI data of times taken to draw a cat or a dog. The...">
+<meta name="twitter:description" content="2.1 Question 1 In this example, we will take a look at question 1 from Paper 1 in 2021. This question is a report style question based on Google AI data of times taken to draw a cat or a dog. The...">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Using R to generate data for questions</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Overview</a></li>
+<li><a class="active" href="paper-1-example.html"><span class="header-section-number">2</span> 2021 Paper 1 Example</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="paper-1-example" class="section level1" number="2">
+<h1>
+<span class="header-section-number">2</span> 2021 Paper 1 Example<a class="anchor" aria-label="anchor" href="#paper-1-example"><i class="fas fa-link"></i></a>
+</h1>
+<div id="question-1" class="section level2" number="2.1">
+<h2>
+<span class="header-section-number">2.1</span> Question 1<a class="anchor" aria-label="anchor" href="#question-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>In this example, we will take a look at question 1 from Paper 1 in 2021. This question is a report style question based on Google AI data of times taken to draw a cat or a dog. The example contains a stem and leaf diagram with the combined data and some summary statistics for both sets of drawings. Following this, a Mann-Whitney Test is carried out to test whether both samples have different average drawing times.</p>
+<p>We will now look at how we can draw a sample of the data from the question, by randomly sampling data for both groups using properties from their summary statistics</p>
+<div id="generating-a-random-sample-of-data" class="section level3" number="2.1.1">
+<h3>
+<span class="header-section-number">2.1.1</span> Generating a random sample of data<a class="anchor" aria-label="anchor" href="#generating-a-random-sample-of-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>We can generate a random sample of data for both the categories using the summary statistics provided. As we can see from the stem and leaf diagram, the data have a lower bound, where we cannot observe any data below zero, as the data recorded are based on time elapsed.</p>
+<p>In order to sample data of this form, we can use a variation of the Normal distribution called the <a href="https://en.wikipedia.org/wiki/Truncated_normal_distribution">truncated normal distribution</a>, which allows us to bound a Normal distribution through a given range.</p>
+<p>To randomly sample data from this distribution, we can use the <code>rtruncnorm</code> function from the <code>truncnorm</code> package in R as follows:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sample_dog</span> <span class="op">&lt;-</span> <span class="fu">rtruncnorm</span><span class="op">(</span>n<span class="op">=</span><span class="fl">145</span>, a<span class="op">=</span><span class="fl">0</span>, b<span class="op">=</span><span class="fl">16</span>, mean<span class="op">=</span><span class="fl">7.5</span>, sd<span class="op">=</span><span class="fl">2.66</span><span class="op">)</span></span>
+<span><span class="va">sample_cat</span> <span class="op">&lt;-</span> <span class="fu">rtruncnorm</span><span class="op">(</span>n<span class="op">=</span><span class="fl">121</span>, a<span class="op">=</span><span class="fl">0</span>, b<span class="op">=</span><span class="fl">14</span>, mean<span class="op">=</span><span class="fl">5.4</span>, sd<span class="op">=</span><span class="fl">2.31</span><span class="op">)</span></span></code></pre></div>
+<p>The parameters required are defined as follows:</p>
+<ul>
+<li>
+<code>n</code> - the number of samples we wish to draw</li>
+<li>
+<code>a</code> - the lower bound of the distribution (here, we will set this to 0)</li>
+<li>
+<code>b</code> - the upper bound of the distribution (here, we have set this to be the ceiling of the max value for each group)</li>
+<li>
+<code>mean</code> - the mean of each group</li>
+<li>
+<code>sd</code> - the standard deviation of each group</li>
+</ul>
+<p>Running the code above will produce a sample for both groups based on their relative summary statistics. We can check the summary statistics of our data using <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code></p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">sample_dog</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   1.260   5.420   6.979   7.172   8.846  14.280</code></pre>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">sample_cat</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.5993  4.5442  5.9961  5.8839  6.9648 12.4311</code></pre>
+</div>
+<div id="visualising-the-data" class="section level3" number="2.1.2">
+<h3>
+<span class="header-section-number">2.1.2</span> Visualising the data<a class="anchor" aria-label="anchor" href="#visualising-the-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>We can also check the distribution of our sampled data for comparison by visualising it using a histogram. The <code>ggplot2</code> library found in the <code>tidyverse</code> library provides several functions for data visualisation and has become more popular than base R graphics. We will use the <code>geom_histogram()</code> function from the library in this example as follows:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dog_hist</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">sample_dog</span><span class="op">)</span>,<span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">sample_dog</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_histogram</span><span class="op">(</span>color<span class="op">=</span><span class="st">"black"</span>,fill<span class="op">=</span><span class="st">"white"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>            <span class="fu">labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Average draw time of dogs"</span>,x<span class="op">=</span><span class="st">"Time (s)"</span><span class="op">)</span></span>
+<span><span class="va">cat_hist</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">sample_cat</span><span class="op">)</span>,<span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">sample_cat</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_histogram</span><span class="op">(</span>color<span class="op">=</span><span class="st">"black"</span>,fill<span class="op">=</span><span class="st">"white"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Average draw time of cats"</span>,x<span class="op">=</span><span class="st">"Time (s)"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">grid.arrange</span><span class="op">(</span><span class="va">dog_hist</span>,<span class="va">cat_hist</span>,ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/histograms-1.png" width="672"></div>
+<p>To create these histograms, the code above works in the following fashion:</p>
+<ul>
+<li>We first specify our data using <code>ggplot(data)</code>, where our data here is either group of samples.</li>
+<li>To specify which variables we would like to select, we use the <code>aes()</code> argument. As we only have one sample of data in each case, we specify this using <code>x=data</code>.</li>
+<li>We then generate the histogram using <code>geom_histogram()</code>, where we can define the line colour using <code>color</code> and the filled colour of the bars using <code>fill</code>.</li>
+<li>We can label our plot using the <code>labs</code> argument, where we can include a <code>title</code> and an <code>x</code> axis label</li>
+</ul>
+<p>We can also alter the number of bins we use (<code>ggplot</code> will set a standard number of bins by default) using the <code>bins</code> argument. Let’s alter the number of bins for the dog data to be 10</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dog_hist</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">sample_dog</span><span class="op">)</span>,<span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">sample_dog</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_histogram</span><span class="op">(</span>color<span class="op">=</span><span class="st">"black"</span>,fill<span class="op">=</span><span class="st">"white"</span>,bins<span class="op">=</span><span class="fl">10</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Average draw time of dogs"</span>,x<span class="op">=</span><span class="st">"Time (s)"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="setting-random-seeds-for-reproducability" class="section level3" number="2.1.3">
+<h3>
+<span class="header-section-number">2.1.3</span> Setting random seeds for reproducability<a class="anchor" aria-label="anchor" href="#setting-random-seeds-for-reproducability"><i class="fas fa-link"></i></a>
+</h3>
+<p>When we randomly sample data each time in R, we will obtain a different sample than before. Let’s run our previous code twice to see if there is any differences:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sample_dog1</span> <span class="op">&lt;-</span> <span class="fu">rtruncnorm</span><span class="op">(</span>n<span class="op">=</span><span class="fl">145</span>, a<span class="op">=</span><span class="fl">0</span>, b<span class="op">=</span><span class="fl">16</span>, mean<span class="op">=</span><span class="fl">7.5</span>, sd<span class="op">=</span><span class="fl">2.66</span><span class="op">)</span></span>
+<span><span class="va">sample_dog2</span> <span class="op">&lt;-</span> <span class="fu">rtruncnorm</span><span class="op">(</span>n<span class="op">=</span><span class="fl">145</span>, a<span class="op">=</span><span class="fl">0</span>, b<span class="op">=</span><span class="fl">16</span>, mean<span class="op">=</span><span class="fl">7.5</span>, sd<span class="op">=</span><span class="fl">2.66</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">sample_dog1</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.4464  5.7736  7.3936  7.5150  9.2837 13.4899</code></pre>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">sample_dog2</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   0.239   5.346   7.562   7.454   9.250  13.457</code></pre>
+<p>We see that both samples produce different summary statistics. This can cause difficulty when you are working on a specific problem and want to design questions around the specific characteristics of the data you have sampled the first time.</p>
+<p>We can force R to use the same random number generation by using the <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> function. Here, we specify the seed from the random number generator we want to use each time we generate samples. This number can be any number you wish to choose! The example below highlights how this works:</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2023</span><span class="op">)</span></span>
+<span><span class="va">sample_dog1</span> <span class="op">&lt;-</span> <span class="fu">rtruncnorm</span><span class="op">(</span>n<span class="op">=</span><span class="fl">145</span>, a<span class="op">=</span><span class="fl">0</span>, b<span class="op">=</span><span class="fl">16</span>, mean<span class="op">=</span><span class="fl">7.5</span>, sd<span class="op">=</span><span class="fl">2.66</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2023</span><span class="op">)</span></span>
+<span><span class="va">sample_dog2</span> <span class="op">&lt;-</span> <span class="fu">rtruncnorm</span><span class="op">(</span>n<span class="op">=</span><span class="fl">145</span>, a<span class="op">=</span><span class="fl">0</span>, b<span class="op">=</span><span class="fl">16</span>, mean<span class="op">=</span><span class="fl">7.5</span>, sd<span class="op">=</span><span class="fl">2.66</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">sample_dog1</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   2.006   6.316   7.545   7.798   9.365  14.776</code></pre>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">sample_dog2</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   2.006   6.316   7.545   7.798   9.365  14.776</code></pre>
+<p>Here, we see we can produce the same data as the first sample by setting the seed prior to sampling.</p>
+
+</div>
+</div>
+<div id="regression" class="section level2" number="2.2">
+<h2>
+<span class="header-section-number">2.2</span> Regression<a class="anchor" aria-label="anchor" href="#regression"><i class="fas fa-link"></i></a>
+</h2>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="index.html"><span class="header-section-number">1</span> Overview</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#paper-1-example"><span class="header-section-number">2</span> 2021 Paper 1 Example</a></li>
+<li>
+<a class="nav-link" href="#question-1"><span class="header-section-number">2.1</span> Question 1</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#generating-a-random-sample-of-data"><span class="header-section-number">2.1.1</span> Generating a random sample of data</a></li>
+<li><a class="nav-link" href="#visualising-the-data"><span class="header-section-number">2.1.2</span> Visualising the data</a></li>
+<li><a class="nav-link" href="#setting-random-seeds-for-reproducability"><span class="header-section-number">2.1.3</span> Setting random seeds for reproducability</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#regression"><span class="header-section-number">2.2</span> Regression</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Using R to generate data for questions</strong>" was written by Craig Alexander &amp; Eilidh Jack. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>
