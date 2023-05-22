@@ -92,4 +92,52 @@ summary(sample_dog2)
 
 Here, we see we can produce the same data as the first sample by setting the seed prior to sampling.
 
+### Manually editing data
+If we take a sample of data and perhaps wish to add some additional variables to mimic the original data closer, this can easily be done in R. Let's take a sample for the dog data but lower our boundary to 14 and visualise
 
+```{r, lowsample}
+sample_dog <- rtruncnorm(n=145, a=0, b=14, mean=7.5, sd=2.66)
+
+ggplot(data.frame(sample_dog),aes(x=sample_dog)) + geom_histogram(color="black",fill="white",bins=12) + 
+            labs(title="Average draw time of dogs",x="Time (s)")
+```
+
+When comparing this to the original data from the paper, we see that we do not observe the two outliers at 14.3 seconds and 15.2 seconds. We can manually add these values as follows:
+
+```{r modify}
+sample_dog <- c(sample_dog, c(14.3,15.2))
+
+ggplot(data.frame(sample_dog),aes(x=sample_dog)) + geom_histogram(color="black",fill="white",bins=12) + 
+            labs(title="Average draw time of dogs",x="Time (s)")
+```
+We now observe the two additional values in the histogram. For a vector of data, we can easily add new values using the `c()` command. This can be done by specifying our original data first, and then including our additional variables in a new `c()` object. If we only wish to add one value, we do not need to use `c()`.
+
+### Sampling from different distributions
+In this case, the data shown roughly takes the form of a Normal distribution. There are several cases where this may not be an appropriate distribution. R contains a full range of different distributions we can sample from. Some common choices are shown below:
+
+- `rbinom()` - Sample from a Binomial distribution
+- `rchisq()` - Sample from a Chi-squared distribution
+- `rgamma()` - Sample from a Gamma distribution
+- `runif()` - Sample from a Uniform distribution
+- `rexp()` - Sample from an Exponential distribution
+
+This list is not exhaustive, and R will contain libraries that will allow sampling from almost any known distribution.
+
+### Performing a Mann-Whitney Test
+We can carry out a Mann-Whitney test in R as follows
+
+```{r, mannwhitney}
+sample_dog <- rtruncnorm(n=145, a=0, b=16, mean=7.5, sd=2.66)
+sample_cat <- rtruncnorm(n=121, a=0, b=14, mean=5.4, sd=2.31)
+
+mann_whitney <- wilcox.test(sample_dog,sample_cat)
+mann_whitney
+```
+The output from this test gives us the rank sum `W` and a p-value which can be used for question creation
+
+## Performing a z-test
+We can perform a two-sample z test in R using the `z.test` function from the `BSDA` package. We can carry out this test as follows:
+```{r, ztest}
+z.test(sample_cat,sample_dog,sigma.x=2.307,sigma.y=2.655)
+```
+Here, we specify the sample standard deviation for cats and dogs respectively. The output from the test gives us the z-statistic, p-value and 95% confidence interval.

@@ -18,6 +18,7 @@ link-citations: yes
 library(truncnorm)
 library(tidyverse)
 library(gridExtra)
+library(BSDA)
 ```
 
 
@@ -30,4 +31,6 @@ Throughout this tutorial, we will use some libraries within R. If you would pref
 
 - `tidyverse`
 - `truncnorm`
+- `gridExtra`
+- `BSDA`
 

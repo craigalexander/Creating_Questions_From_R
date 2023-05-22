@@ -149,6 +149,10 @@ Throughout this tutorial, we will use some libraries within R. If you would pref
   \texttt{tidyverse}
 \item
   \texttt{truncnorm}
+\item
+  \texttt{gridExtra}
+\item
+  \texttt{BSDA}
 \end{itemize}
 
 \hypertarget{paper-1-example}{%
@@ -325,6 +329,110 @@ We can force R to use the same random number generation by using the \texttt{set
 \end{verbatim}
 
 Here, we see we can produce the same data as the first sample by setting the seed prior to sampling.
+
+\hypertarget{manually-editing-data}{%
+\subsection{Manually editing data}\label{manually-editing-data}}
+
+If we take a sample of data and perhaps wish to add some additional variables to mimic the original data closer, this can easily be done in R. Let's take a sample for the dog data but lower our boundary to 14 and visualise
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sample\_dog }\OtherTok{\textless{}{-}} \FunctionTok{rtruncnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{145}\NormalTok{, }\AttributeTok{a=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{14}\NormalTok{, }\AttributeTok{mean=}\FloatTok{7.5}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.66}\NormalTok{)}
+
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(sample\_dog),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{sample\_dog)) }\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{fill=}\StringTok{"white"}\NormalTok{,}\AttributeTok{bins=}\DecValTok{12}\NormalTok{) }\SpecialCharTok{+} 
+            \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{"Average draw time of dogs"}\NormalTok{,}\AttributeTok{x=}\StringTok{"Time (s)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/lowsample-1.pdf}
+
+When comparing this to the original data from the paper, we see that we do not observe the two outliers at 14.3 seconds and 15.2 seconds. We can manually add these values as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sample\_dog }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(sample\_dog, }\FunctionTok{c}\NormalTok{(}\FloatTok{14.3}\NormalTok{,}\FloatTok{15.2}\NormalTok{))}
+
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(sample\_dog),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{sample\_dog)) }\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{fill=}\StringTok{"white"}\NormalTok{,}\AttributeTok{bins=}\DecValTok{12}\NormalTok{) }\SpecialCharTok{+} 
+            \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{"Average draw time of dogs"}\NormalTok{,}\AttributeTok{x=}\StringTok{"Time (s)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/modify-1.pdf}
+We now observe the two additional values in the histogram. For a vector of data, we can easily add new values using the \texttt{c()} command. This can be done by specifying our original data first, and then including our additional variables in a new \texttt{c()} object. If we only wish to add one value, we do not need to use \texttt{c()}.
+
+\hypertarget{sampling-from-different-distributions}{%
+\subsection{Sampling from different distributions}\label{sampling-from-different-distributions}}
+
+In this case, the data shown roughly takes the form of a Normal distribution. There are several cases where this may not be an appropriate distribution. R contains a full range of different distributions we can sample from. Some common choices are shown below:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{rbinom()} - Sample from a Binomial distribution
+\item
+  \texttt{rchisq()} - Sample from a Chi-squared distribution
+\item
+  \texttt{rgamma()} - Sample from a Gamma distribution
+\item
+  \texttt{runif()} - Sample from a Uniform distribution
+\item
+  \texttt{rexp()} - Sample from an Exponential distribution
+\end{itemize}
+
+This list is not exhaustive, and R will contain libraries that will allow sampling from almost any known distribution.
+
+\hypertarget{performing-a-mann-whitney-test}{%
+\subsection{Performing a Mann-Whitney Test}\label{performing-a-mann-whitney-test}}
+
+We can carry out a Mann-Whitney test in R as follows
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sample\_dog }\OtherTok{\textless{}{-}} \FunctionTok{rtruncnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{145}\NormalTok{, }\AttributeTok{a=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{16}\NormalTok{, }\AttributeTok{mean=}\FloatTok{7.5}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.66}\NormalTok{)}
+\NormalTok{sample\_cat }\OtherTok{\textless{}{-}} \FunctionTok{rtruncnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{121}\NormalTok{, }\AttributeTok{a=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{14}\NormalTok{, }\AttributeTok{mean=}\FloatTok{5.4}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.31}\NormalTok{)}
+
+\NormalTok{mann\_whitney }\OtherTok{\textless{}{-}} \FunctionTok{wilcox.test}\NormalTok{(sample\_dog,sample\_cat)}
+\NormalTok{mann\_whitney}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Wilcoxon rank sum test with continuity correction
+## 
+## data:  sample_dog and sample_cat
+## W = 12823, p-value = 9.048e-11
+## alternative hypothesis: true location shift is not equal to 0
+\end{verbatim}
+
+The output from this test gives us the rank sum \texttt{W} and a p-value which can be used for question creation
+
+\hypertarget{performing-a-z-test}{%
+\section{Performing a z-test}\label{performing-a-z-test}}
+
+We can perform a two-sample z test in R using the \texttt{z.test} function from the \texttt{BSDA} package. We can carry out this test as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{z.test}\NormalTok{(sample\_cat,sample\_dog,}\AttributeTok{sigma.x=}\FloatTok{2.307}\NormalTok{,}\AttributeTok{sigma.y=}\FloatTok{2.655}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Two-sample z-Test
+## 
+## data:  sample_cat and sample_dog
+## z = -6.7694, p-value = 1.293e-11
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -2.656354 -1.463513
+## sample estimates:
+## mean of x mean of y 
+##  5.308262  7.368196
+\end{verbatim}
+
+Here, we specify the sample standard deviation for cats and dogs respectively. The output from the test gives us the z-statistic, p-value and 95\% confidence interval.
 
 \hypertarget{regression}{%
 \section{Regression}\label{regression}}
