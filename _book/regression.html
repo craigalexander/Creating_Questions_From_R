@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.3 Regression | Using R to generate data for questions</title>
   <meta name="description" content="2.3 Regression | Using R to generate data for questions" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.3 Regression | Using R to generate data for questions" />
   <meta property="og:type" content="book" />
@@ -151,7 +151,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1.6" data-path="question-1.html"><a href="question-1.html#performing-a-mann-whitney-test"><i class="fa fa-check"></i><b>2.1.6</b> Performing a Mann-Whitney Test</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="performing-a-z-test.html"><a href="performing-a-z-test.html"><i class="fa fa-check"></i><b>2.2</b> Performing a z-test</a></li>
-<li class="chapter" data-level="2.3" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>2.3</b> Regression</a></li>
+<li class="chapter" data-level="2.3" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>2.3</b> Regression</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="regression.html"><a href="regression.html#question"><i class="fa fa-check"></i><b>2.3.1</b> Question</a></li>
+<li class="chapter" data-level="2.3.2" data-path="regression.html"><a href="regression.html#generating-our-data"><i class="fa fa-check"></i><b>2.3.2</b> Generating our data</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -175,7 +179,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="regression" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> Regression<a href="regression.html#regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this section we will introduce how to generate data for a linear model example using the linear model equation.</p>
+<p>This example is based on the following question.</p>
+<div id="question" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Question<a href="regression.html#question" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A global ice cream company is interested in using linear regression to predict its ice cream waste (kg) based on the average temperatures of its store locations (<span class="math inline">\(^{\circ}\)</span>C).</p>
+<p>The estimated linear model is:</p>
+<p><span class="math display">\[\hat{waste} = 591 - 10.65 \times temperature.\]</span></p>
+<ol style="list-style-type: decimal">
+<li><p>What is the predicted waste for a store location whose average temperature is 18<span class="math inline">\(^{\circ}\)</span>C?</p></li>
+<li><p>The standard error for the slope coefficient is 0.38, which is associated with <span class="math inline">\(df=32\)</span>. Calculate a 95% confidence interval for the slope parameter.</p></li>
+<li><p>Suppose you performed a hypothesis test to test if average temperature is a significant predictor of ice cream waste. Working at a significance level of 5%, would you expect the p-value of the hypothesis test to be:</p></li>
+</ol>
+<div id="radio_XPMJYNFZEM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XPMJYNFZEM" value=""></input> <span>Cannot tell with the information provided</span></label><label><input type="radio" autocomplete="off" name="radio_XPMJYNFZEM" value=""></input> <span>greater than 0.05</span></label><label><input type="radio" autocomplete="off" name="radio_XPMJYNFZEM" value="answer"></input> <span>less than 0.05</span></label>
+</div>
+<p><br></p>
+</div>
+<div id="generating-our-data" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Generating our data<a href="regression.html#generating-our-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In order to fit this linear model we need to generate two variables:</p>
+<ul>
+<li>Response variable (<span class="math inline">\(y\)</span>): <span class="math inline">\(waste\)</span> and</li>
+<li>Explanatory variable (<span class="math inline">\(x\)</span>): <span class="math inline">\(temperature\)</span>.</li>
+</ul>
+<p>Crucially, these variables need to be associated with each other as shown in the linear model equation.</p>
+<p>Let’s start by generating our x-variable, <span class="math inline">\(temperature\)</span>. We will use a Normal distribution to do this since our variable is continuous.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="regression.html#cb23-1" aria-hidden="true" tabindex="-1"></a>temp<span class="ot">&lt;-</span><span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">34</span>, <span class="at">mean=</span><span class="dv">12</span>, <span class="at">sd=</span><span class="dv">4</span>)</span></code></pre></div>
+<p>The parameters required are defined as follows:</p>
+<ul>
+<li><code>n</code> - the number of samples we wish to draw. In our question <span class="math inline">\(df=32\)</span>, so <span class="math inline">\(n=34\)</span> (since for a simple linear model <span class="math inline">\(df=n-2\)</span>).</li>
+<li><code>mean</code> - the mean temperature which our data will be centered on. Pick something sensible here, we have gone for <span class="math inline">\(12^{\circ}\)</span>C.</li>
+<li><code>sd</code> - the standard deviation for <span class="math inline">\(temperature\)</span>. Again go for something that seems sensible (high enough to show some variability, but not too high that the values at the extreme are no longer sensible). This can take a bit of trial and error.</li>
+</ul>
 
+</div>
 </div>
 <!-- </div> -->
             </section>
@@ -241,6 +279,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

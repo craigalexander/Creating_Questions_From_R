@@ -294,7 +294,7 @@ When we randomly sample data each time in R, we will obtain a different sample t
 
 \begin{verbatim}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   0.239   5.346   7.562   7.454   9.250  13.457
+##  0.2391  5.3456  7.5616  7.4537  9.2504 13.4568
 \end{verbatim}
 
 We see that both samples produce different summary statistics. This can cause difficulty when you are working on a specific problem and want to design questions around the specific characteristics of the data you have sampled the first time.
@@ -434,8 +434,69 @@ We can perform a two-sample z test in R using the \texttt{z.test} function from 
 
 Here, we specify the sample standard deviation for cats and dogs respectively. The output from the test gives us the z-statistic, p-value and 95\% confidence interval.
 
-\hypertarget{regression}{%
-\section{Regression}\label{regression}}
+\hypertarget{regression-example}{%
+\chapter{Regression example}\label{regression-example}}
+
+In this section we will introduce how to generate data for a linear model example using the linear model equation.
+
+This example is based on the following question.
+
+\hypertarget{question}{%
+\section{Question}\label{question}}
+
+A global ice cream company is interested in using linear regression to predict its ice cream waste (kg) based on the average temperatures of its store locations (\(^{\circ}\)C).
+
+The estimated linear model is:
+
+\[\hat{waste} = 591 - 10.65 \times temperature.\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  What is the predicted waste for a store location whose average temperature is 18\(^{\circ}\)C?
+\item
+  The standard error for the slope coefficient is 0.38, which is associated with \(df=32\). Calculate a 95\% confidence interval for the slope parameter.
+\item
+  Suppose you performed a hypothesis test to test if average temperature is a significant predictor of ice cream waste. Working at a significance level of 5\%, would you expect the p-value of the hypothesis test to be:
+\end{enumerate}
+
+\hypertarget{radio_XPMJYNFZEM}{}
+{Cannot tell with the information provided} {greater than 0.05} {less than 0.05}
+
+\hypertarget{generating-our-data}{%
+\section{Generating our data}\label{generating-our-data}}
+
+In order to fit this linear model we need to generate two variables:
+
+\begin{itemize}
+\tightlist
+\item
+  Response variable (\(y\)): \(waste\) and
+\item
+  Explanatory variable (\(x\)): \(temperature\).
+\end{itemize}
+
+Crucially, these variables need to be associated with each other as shown in the linear model equation.
+
+Let's start by generating our x-variable, \(temperature\). We will use a Normal distribution to do this since our variable is continuous.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{temp}\OtherTok{\textless{}{-}}\FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{34}\NormalTok{, }\AttributeTok{mean=}\DecValTok{12}\NormalTok{, }\AttributeTok{sd=}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The parameters required are defined as follows:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{n} - the number of samples we wish to draw. In our question \(df=32\), so \(n=34\) (since for a simple linear model \(df=n-2\)).
+\item
+  \texttt{mean} - the mean temperature which our data will be centered on. Pick something sensible here, we have gone for \(12^{\circ}\)C.
+\item
+  \texttt{sd} - the standard deviation for \(temperature\). Again go for something that seems sensible (high enough to show some variability, but not too high that the values at the extreme are no longer sensible). This can take a bit of trial and error.
+\end{itemize}
 
   \bibliography{book.bib,packages.bib}
 

@@ -1,1 +1,55 @@
-## Regression
+# Regression example
+In this section we will introduce how to generate data for a linear model example using the linear model equation.
+
+This example is based on the following question.
+
+## Question
+A global ice cream company is interested in using linear regression to predict its ice cream waste (kg) based on the average temperatures of its store locations ($^{\circ}$C).
+
+The estimated linear model is:
+
+$$\hat{waste} = 591 - 10.65 \times temperature.$$
+
+1. What is the predicted waste for a store location whose average temperature is 18$^{\circ}$C?
+
+2. The standard error for the slope coefficient is 0.38, which is associated with $df=32$. Calculate a 95% confidence interval for the slope parameter.
+
+3. Suppose you performed a hypothesis test to test if average temperature is a significant predictor of ice cream waste. Working at a significance level of 5%, would you expect the p-value of the hypothesis test to be:
+
+```{r, echo = FALSE}
+q_ex1 <- sample(c(
+   "greater than 0.05",
+    answer = "less than 0.05",
+    "Cannot tell with the information provided"
+)
+)
+```
+
+`r longmcq(q_ex1)`
+
+<br>
+
+## Generating our data
+In order to fit this linear model we need to generate two variables: 
+
+* Response variable ($y$): $waste$ and
+* Explanatory variable ($x$): $temperature$.
+
+Crucially, these variables need to be associated with each other as shown in the linear model equation.
+
+```{r, echo=FALSE}
+set.seed(1)
+```
+
+Let's start by generating our x-variable, $temperature$. We will use a Normal distribution to do this since our variable is continuous.
+
+```{r, xsample}
+temp<-rnorm(n=34, mean=12, sd=4)
+```
+
+
+The parameters required are defined as follows:
+
+* `n` - the number of samples we wish to draw. In our question $df=32$, so $n=34$ (since for a simple linear model $df=n-2$).
+* `mean` - the mean temperature which our data will be centered on. Pick something sensible here, we have gone for $12^{\circ}$C.
+* `sd` - the standard deviation for $temperature$. Again go for something that seems sensible (high enough to show some variability, but not too high that the values at the extreme are no longer sensible). This can take a bit of trial and error.

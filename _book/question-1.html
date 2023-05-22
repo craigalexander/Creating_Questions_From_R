@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.1 Question 1 | Using R to generate data for questions</title>
   <meta name="description" content="2.1 Question 1 | Using R to generate data for questions" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.1 Question 1 | Using R to generate data for questions" />
   <meta property="og:type" content="book" />
@@ -151,7 +151,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1.6" data-path="question-1.html"><a href="question-1.html#performing-a-mann-whitney-test"><i class="fa fa-check"></i><b>2.1.6</b> Performing a Mann-Whitney Test</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="performing-a-z-test.html"><a href="performing-a-z-test.html"><i class="fa fa-check"></i><b>2.2</b> Performing a z-test</a></li>
-<li class="chapter" data-level="2.3" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>2.3</b> Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="regression-example.html"><a href="regression-example.html"><i class="fa fa-check"></i><b>3</b> Regression example</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="question.html"><a href="question.html"><i class="fa fa-check"></i><b>3.1</b> Question</a></li>
+<li class="chapter" data-level="3.2" data-path="generating-our-data.html"><a href="generating-our-data.html"><i class="fa fa-check"></i><b>3.2</b> Generating our data</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -234,7 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  0.4464  5.7736  7.3936  7.5150  9.2837 13.4899</code></pre>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="question-1.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sample_dog2)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   0.239   5.346   7.562   7.454   9.250  13.457</code></pre>
+##  0.2391  5.3456  7.5616  7.4537  9.2504 13.4568</code></pre>
 <p>We see that both samples produce different summary statistics. This can cause difficulty when you are working on a specific problem and want to design questions around the specific characteristics of the data you have sampled the first time.</p>
 <p>We can force R to use the same random number generation by using the <code>set.seed()</code> function. Here, we specify the seed from the random number generator we want to use each time we generate samples. This number can be any number you wish to choose! The example below highlights how this works:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="question-1.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2023</span>)</span>
@@ -358,6 +362,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

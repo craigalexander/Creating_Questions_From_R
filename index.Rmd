@@ -15,6 +15,7 @@ biblio-style: apalike
 link-citations: yes
 ---
 ```{r setup, include=FALSE}
+library(webexercises)
 library(truncnorm)
 library(tidyverse)
 library(gridExtra)

@@ -9,4 +9,6 @@ manually-editing-data
 sampling-from-different-distributions
 performing-a-mann-whitney-test
 performing-a-z-test
-regression
+regression-example
+question
+generating-our-data

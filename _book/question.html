@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.2 Performing a z-test | Using R to generate data for questions</title>
-  <meta name="description" content="2.2 Performing a z-test | Using R to generate data for questions" />
+  <title>3.1 Question | Using R to generate data for questions</title>
+  <meta name="description" content="3.1 Question | Using R to generate data for questions" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.2 Performing a z-test | Using R to generate data for questions" />
+  <meta property="og:title" content="3.1 Question | Using R to generate data for questions" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.2 Performing a z-test | Using R to generate data for questions" />
+  <meta name="twitter:title" content="3.1 Question | Using R to generate data for questions" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="question-1.html"/>
-<link rel="next" href="regression-example.html"/>
+<link rel="prev" href="regression-example.html"/>
+<link rel="next" href="generating-our-data.html"/>
 <script src="assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -177,32 +177,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="performing-a-z-test" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Performing a z-test<a href="performing-a-z-test.html#performing-a-z-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We can perform a two-sample z test in R using the <code>z.test</code> function from the <code>BSDA</code> package. We can carry out this test as follows:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="performing-a-z-test.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">z.test</span>(sample_cat,sample_dog,<span class="at">sigma.x=</span><span class="fl">2.307</span>,<span class="at">sigma.y=</span><span class="fl">2.655</span>)</span></code></pre></div>
-<pre><code>## 
-##  Two-sample z-Test
-## 
-## data:  sample_cat and sample_dog
-## z = -6.7694, p-value = 1.293e-11
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -2.656354 -1.463513
-## sample estimates:
-## mean of x mean of y 
-##  5.308262  7.368196</code></pre>
-<p>Here, we specify the sample standard deviation for cats and dogs respectively. The output from the test gives us the z-statistic, p-value and 95% confidence interval.</p>
-
+<div id="question" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Question<a href="question.html#question" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A global ice cream company is interested in using linear regression to predict its ice cream waste (kg) based on the average temperatures of its store locations (<span class="math inline">\(^{\circ}\)</span>C).</p>
+<p>The estimated linear model is:</p>
+<p><span class="math display">\[\hat{waste} = 591 - 10.65 \times temperature.\]</span></p>
+<ol style="list-style-type: decimal">
+<li><p>What is the predicted waste for a store location whose average temperature is 18<span class="math inline">\(^{\circ}\)</span>C?</p></li>
+<li><p>The standard error for the slope coefficient is 0.38, which is associated with <span class="math inline">\(df=32\)</span>. Calculate a 95% confidence interval for the slope parameter.</p></li>
+<li><p>Suppose you performed a hypothesis test to test if average temperature is a significant predictor of ice cream waste. Working at a significance level of 5%, would you expect the p-value of the hypothesis test to be:</p></li>
+</ol>
+<div id="radio_XPMJYNFZEM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XPMJYNFZEM" value=""></input> <span>Cannot tell with the information provided</span></label><label><input type="radio" autocomplete="off" name="radio_XPMJYNFZEM" value=""></input> <span>greater than 0.05</span></label><label><input type="radio" autocomplete="off" name="radio_XPMJYNFZEM" value="answer"></input> <span>less than 0.05</span></label>
 </div>
-<!-- </div> -->
+<p><br></p>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="question-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="regression-example.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="regression-example.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="generating-our-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>
@@ -233,7 +229,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-regression.Rmd",
 "text": "Edit"
 },
 "history": {

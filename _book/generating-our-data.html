@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.2 Performing a z-test | Using R to generate data for questions</title>
-  <meta name="description" content="2.2 Performing a z-test | Using R to generate data for questions" />
+  <title>3.2 Generating our data | Using R to generate data for questions</title>
+  <meta name="description" content="3.2 Generating our data | Using R to generate data for questions" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.2 Performing a z-test | Using R to generate data for questions" />
+  <meta property="og:title" content="3.2 Generating our data | Using R to generate data for questions" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.2 Performing a z-test | Using R to generate data for questions" />
+  <meta name="twitter:title" content="3.2 Generating our data | Using R to generate data for questions" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="question-1.html"/>
-<link rel="next" href="regression-example.html"/>
+<link rel="prev" href="question.html"/>
+
 <script src="assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -177,22 +177,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="performing-a-z-test" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Performing a z-test<a href="performing-a-z-test.html#performing-a-z-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We can perform a two-sample z test in R using the <code>z.test</code> function from the <code>BSDA</code> package. We can carry out this test as follows:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="performing-a-z-test.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">z.test</span>(sample_cat,sample_dog,<span class="at">sigma.x=</span><span class="fl">2.307</span>,<span class="at">sigma.y=</span><span class="fl">2.655</span>)</span></code></pre></div>
-<pre><code>## 
-##  Two-sample z-Test
-## 
-## data:  sample_cat and sample_dog
-## z = -6.7694, p-value = 1.293e-11
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -2.656354 -1.463513
-## sample estimates:
-## mean of x mean of y 
-##  5.308262  7.368196</code></pre>
-<p>Here, we specify the sample standard deviation for cats and dogs respectively. The output from the test gives us the z-statistic, p-value and 95% confidence interval.</p>
+<div id="generating-our-data" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Generating our data<a href="generating-our-data.html#generating-our-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In order to fit this linear model we need to generate two variables:</p>
+<ul>
+<li>Response variable (<span class="math inline">\(y\)</span>): <span class="math inline">\(waste\)</span> and</li>
+<li>Explanatory variable (<span class="math inline">\(x\)</span>): <span class="math inline">\(temperature\)</span>.</li>
+</ul>
+<p>Crucially, these variables need to be associated with each other as shown in the linear model equation.</p>
+<p>Let’s start by generating our x-variable, <span class="math inline">\(temperature\)</span>. We will use a Normal distribution to do this since our variable is continuous.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="generating-our-data.html#cb23-1" aria-hidden="true" tabindex="-1"></a>temp<span class="ot">&lt;-</span><span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">34</span>, <span class="at">mean=</span><span class="dv">12</span>, <span class="at">sd=</span><span class="dv">4</span>)</span></code></pre></div>
+<p>The parameters required are defined as follows:</p>
+<ul>
+<li><code>n</code> - the number of samples we wish to draw. In our question <span class="math inline">\(df=32\)</span>, so <span class="math inline">\(n=34\)</span> (since for a simple linear model <span class="math inline">\(df=n-2\)</span>).</li>
+<li><code>mean</code> - the mean temperature which our data will be centered on. Pick something sensible here, we have gone for <span class="math inline">\(12^{\circ}\)</span>C.</li>
+<li><code>sd</code> - the standard deviation for <span class="math inline">\(temperature\)</span>. Again go for something that seems sensible (high enough to show some variability, but not too high that the values at the extreme are no longer sensible). This can take a bit of trial and error.</li>
+</ul>
 
 </div>
 <!-- </div> -->
@@ -201,8 +201,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="question-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="regression-example.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="question.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>
@@ -233,7 +233,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-regression.Rmd",
 "text": "Edit"
 },
 "history": {
