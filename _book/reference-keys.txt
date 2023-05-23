@@ -11,4 +11,11 @@ performing-a-mann-whitney-test
 performing-a-z-test
 linear-model-example
 question
-generating-our-data
+generating-data
+explanatory-variable
+using-a-linear-model-to-generate-the-response
+fitting-a-linear-model
+adding-the-linear-model-line-to-a-scatterplot
+producing-model-diagnostics
+calculating-quantities-of-interest
+summary

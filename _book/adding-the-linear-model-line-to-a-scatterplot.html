@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.2 Performing a z-test | Using R to generate data for questions</title>
-  <meta name="description" content="2.2 Performing a z-test | Using R to generate data for questions" />
+  <title>3.4 Adding the linear model line to a scatterplot | Using R to generate data for questions</title>
+  <meta name="description" content="3.4 Adding the linear model line to a scatterplot | Using R to generate data for questions" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.2 Performing a z-test | Using R to generate data for questions" />
+  <meta property="og:title" content="3.4 Adding the linear model line to a scatterplot | Using R to generate data for questions" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.2 Performing a z-test | Using R to generate data for questions" />
+  <meta name="twitter:title" content="3.4 Adding the linear model line to a scatterplot | Using R to generate data for questions" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="question-1.html"/>
-<link rel="next" href="linear-model-example.html"/>
+<link rel="prev" href="fitting-a-linear-model.html"/>
+<link rel="next" href="producing-model-diagnostics.html"/>
 <script src="assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -184,32 +184,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="performing-a-z-test" class="section level2 hasAnchor">
-<h2><span class="header-section-number">2.2</span> Performing a z-test<a href="performing-a-z-test.html#performing-a-z-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We can perform a two-sample z test in R using the <code>z.test</code> function from the <code>BSDA</code> package. We can carry out this test as follows:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="performing-a-z-test.html#cb21-1"></a><span class="kw">z.test</span>(sample_cat,sample_dog,<span class="dt">sigma.x=</span><span class="fl">2.307</span>,<span class="dt">sigma.y=</span><span class="fl">2.655</span>)</span></code></pre></div>
-<pre><code>## 
-##  Two-sample z-Test
-## 
-## data:  sample_cat and sample_dog
-## z = -6.7694, p-value = 1.293e-11
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -2.656354 -1.463513
-## sample estimates:
-## mean of x mean of y 
-##  5.308262  7.368196</code></pre>
-<p>Here, we specify the sample standard deviation for cats and dogs respectively. The output from the test gives us the z-statistic, p-value and 95% confidence interval.</p>
-
+<div id="adding-the-linear-model-line-to-a-scatterplot" class="section level2 hasAnchor">
+<h2><span class="header-section-number">3.4</span> Adding the linear model line to a scatterplot<a href="adding-the-linear-model-line-to-a-scatterplot.html#adding-the-linear-model-line-to-a-scatterplot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can now add our fitted model and 95% confidence interval to the scatterplot of our data using the following code.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="adding-the-linear-model-line-to-a-scatterplot.html#cb31-1"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>temp, <span class="dt">y=</span>waste)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb31-2"><a href="adding-the-linear-model-line-to-a-scatterplot.html#cb31-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb31-3"><a href="adding-the-linear-model-line-to-a-scatterplot.html#cb31-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Average temperature&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Ice cream waste&quot;</span>)<span class="op">+</span></span>
+<span id="cb31-4"><a href="adding-the-linear-model-line-to-a-scatterplot.html#cb31-4"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="bookdown-demo_files/figure-html/xyscatter3-1.png" width="672" /></p>
+<p>To generate this plot we have used the same code as previously and added the <code>geom_smooth()</code> with the following arguments:</p>
+<ul>
+<li><code>method = lm</code> - fit a linear model line to the plot.</li>
+<li><code>se = TRUE</code> - display a confidence interval around the line. This can be removed by setting <code>se=FALSE</code>.</li>
+</ul>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="question-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="linear-model-example.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="fitting-a-linear-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="producing-model-diagnostics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>
@@ -240,7 +236,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-regression.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 2 2021 Paper 1 Example | Using R to generate data for questions</title>
 <meta name="author" content="Craig Alexander &amp; Eilidh Jack">
-<meta name="generator" content="bookdown 0.31 with bs4_book()">
+<meta name="generator" content="bookdown 0.30 with bs4_book()">
 <meta property="og:title" content="Chapter 2 2021 Paper 1 Example | Using R to generate data for questions">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 2 2021 Paper 1 Example | Using R to generate data for questions">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.1/transition.js"></script><script src="libs/bs3compat-0.4.1/tabs.js"></script><script src="libs/bs3compat-0.4.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
@@ -52,17 +52,17 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="paper-1-example" class="section level1" number="2">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="paper-1-example" class="section level1">
 <h1>
 <span class="header-section-number">2</span> 2021 Paper 1 Example<a class="anchor" aria-label="anchor" href="#paper-1-example"><i class="fas fa-link"></i></a>
 </h1>
-<div id="question-1" class="section level2" number="2.1">
+<div id="question-1" class="section level2">
 <h2>
 <span class="header-section-number">2.1</span> Question 1<a class="anchor" aria-label="anchor" href="#question-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>In this example, we will take a look at question 1 from Paper 1 in 2021. This question is a report style question based on Google AI data of times taken to draw a cat or a dog. The example contains a stem and leaf diagram with the combined data and some summary statistics for both sets of drawings. Following this, a Mann-Whitney Test is carried out to test whether both samples have different average drawing times.</p>
 <p>We will now look at how we can draw a sample of the data from the question, by randomly sampling data for both groups using properties from their summary statistics</p>
-<div id="generating-a-random-sample-of-data" class="section level3" number="2.1.1">
+<div id="generating-a-random-sample-of-data" class="section level3">
 <h3>
 <span class="header-section-number">2.1.1</span> Generating a random sample of data<a class="anchor" aria-label="anchor" href="#generating-a-random-sample-of-data"><i class="fas fa-link"></i></a>
 </h3>
@@ -95,7 +95,7 @@
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##  0.5993  4.5442  5.9961  5.8839  6.9648 12.4311</code></pre>
 </div>
-<div id="visualising-the-data" class="section level3" number="2.1.2">
+<div id="visualising-the-data" class="section level3">
 <h3>
 <span class="header-section-number">2.1.2</span> Visualising the data<a class="anchor" aria-label="anchor" href="#visualising-the-data"><i class="fas fa-link"></i></a>
 </h3>
@@ -122,7 +122,7 @@
 <code class="sourceCode R"><span><span class="va">dog_hist</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">sample_dog</span><span class="op">)</span>,<span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">sample_dog</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_histogram</span><span class="op">(</span>color<span class="op">=</span><span class="st">"black"</span>,fill<span class="op">=</span><span class="st">"white"</span>,bins<span class="op">=</span><span class="fl">10</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Average draw time of dogs"</span>,x<span class="op">=</span><span class="st">"Time (s)"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="setting-random-seeds-for-reproducability" class="section level3" number="2.1.3">
+<div id="setting-random-seeds-for-reproducability" class="section level3">
 <h3>
 <span class="header-section-number">2.1.3</span> Setting random seeds for reproducability<a class="anchor" aria-label="anchor" href="#setting-random-seeds-for-reproducability"><i class="fas fa-link"></i></a>
 </h3>
@@ -155,7 +155,7 @@
 ##   2.006   6.316   7.545   7.798   9.365  14.776</code></pre>
 <p>Here, we see we can produce the same data as the first sample by setting the seed prior to sampling.</p>
 </div>
-<div id="manually-editing-data" class="section level3" number="2.1.4">
+<div id="manually-editing-data" class="section level3">
 <h3>
 <span class="header-section-number">2.1.4</span> Manually editing data<a class="anchor" aria-label="anchor" href="#manually-editing-data"><i class="fas fa-link"></i></a>
 </h3>
@@ -175,7 +175,7 @@
 <p><img src="bookdown-demo_files/figure-html/modify-1.png" width="672">
 We now observe the two additional values in the histogram. For a vector of data, we can easily add new values using the <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> command. This can be done by specifying our original data first, and then including our additional variables in a new <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> object. If we only wish to add one value, we do not need to use <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>.</p>
 </div>
-<div id="sampling-from-different-distributions" class="section level3" number="2.1.5">
+<div id="sampling-from-different-distributions" class="section level3">
 <h3>
 <span class="header-section-number">2.1.5</span> Sampling from different distributions<a class="anchor" aria-label="anchor" href="#sampling-from-different-distributions"><i class="fas fa-link"></i></a>
 </h3>
@@ -194,7 +194,7 @@ We now observe the two additional values in the histogram. For a vector of data,
 </ul>
 <p>This list is not exhaustive, and R will contain libraries that will allow sampling from almost any known distribution.</p>
 </div>
-<div id="performing-a-mann-whitney-test" class="section level3" number="2.1.6">
+<div id="performing-a-mann-whitney-test" class="section level3">
 <h3>
 <span class="header-section-number">2.1.6</span> Performing a Mann-Whitney Test<a class="anchor" aria-label="anchor" href="#performing-a-mann-whitney-test"><i class="fas fa-link"></i></a>
 </h3>
@@ -214,7 +214,7 @@ We now observe the two additional values in the histogram. For a vector of data,
 <p>The output from this test gives us the rank sum <code>W</code> and a p-value which can be used for question creation</p>
 </div>
 </div>
-<div id="performing-a-z-test" class="section level2" number="2.2">
+<div id="performing-a-z-test" class="section level2">
 <h2>
 <span class="header-section-number">2.2</span> Performing a z-test<a class="anchor" aria-label="anchor" href="#performing-a-z-test"><i class="fas fa-link"></i></a>
 </h2>

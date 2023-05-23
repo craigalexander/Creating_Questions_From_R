@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.2 Performing a z-test | Using R to generate data for questions</title>
-  <meta name="description" content="2.2 Performing a z-test | Using R to generate data for questions" />
+  <title>3.3 Fitting a linear model | Using R to generate data for questions</title>
+  <meta name="description" content="3.3 Fitting a linear model | Using R to generate data for questions" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.2 Performing a z-test | Using R to generate data for questions" />
+  <meta property="og:title" content="3.3 Fitting a linear model | Using R to generate data for questions" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.2 Performing a z-test | Using R to generate data for questions" />
+  <meta name="twitter:title" content="3.3 Fitting a linear model | Using R to generate data for questions" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="question-1.html"/>
-<link rel="next" href="linear-model-example.html"/>
+<link rel="prev" href="generating-data.html"/>
+<link rel="next" href="adding-the-linear-model-line-to-a-scatterplot.html"/>
 <script src="assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -184,32 +184,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="performing-a-z-test" class="section level2 hasAnchor">
-<h2><span class="header-section-number">2.2</span> Performing a z-test<a href="performing-a-z-test.html#performing-a-z-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We can perform a two-sample z test in R using the <code>z.test</code> function from the <code>BSDA</code> package. We can carry out this test as follows:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="performing-a-z-test.html#cb21-1"></a><span class="kw">z.test</span>(sample_cat,sample_dog,<span class="dt">sigma.x=</span><span class="fl">2.307</span>,<span class="dt">sigma.y=</span><span class="fl">2.655</span>)</span></code></pre></div>
+<div id="fitting-a-linear-model" class="section level2 hasAnchor">
+<h2><span class="header-section-number">3.3</span> Fitting a linear model<a href="fitting-a-linear-model.html#fitting-a-linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that we have simulated values for <span class="math inline">\(temperature\)</span> and <span class="math inline">\(waste\)</span> we can now fit a linear model and generate output that can be used to create questions.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="fitting-a-linear-model.html#cb29-1"></a>model&lt;-<span class="kw">lm</span>(waste<span class="op">~</span>temp)</span>
+<span id="cb29-2"><a href="fitting-a-linear-model.html#cb29-2"></a><span class="kw">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
-##  Two-sample z-Test
+## Call:
+## lm(formula = waste ~ temp)
 ## 
-## data:  sample_cat and sample_dog
-## z = -6.7694, p-value = 1.293e-11
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -2.656354 -1.463513
-## sample estimates:
-## mean of x mean of y 
-##  5.308262  7.368196</code></pre>
-<p>Here, we specify the sample standard deviation for cats and dogs respectively. The output from the test gives us the z-statistic, p-value and 95% confidence interval.</p>
-
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -38.514 -11.412  -2.084  10.421  45.052 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 596.9391    11.8702   50.29  &lt; 2e-16 ***
+## temp        -10.9101     0.9153  -11.92 2.62e-13 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 18.85 on 32 degrees of freedom
+## Multiple R-squared:  0.8162, Adjusted R-squared:  0.8104 
+## F-statistic: 142.1 on 1 and 32 DF,  p-value: 2.62e-13</code></pre>
+<p>Note that the estimates for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are slightly different to the values we used to generate the data. This is because of the random noise we added when generating our response variable. The values are fairly similar though. Notice how these values correspond with the linear model used in the question at the top on the page, and how we have used the standard error from the output table when asking for a 95% CI for the slope parameter (although this may be beyond the scope for the AH stats cirriculum).</p>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="question-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="linear-model-example.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="generating-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="adding-the-linear-model-line-to-a-scatterplot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>
@@ -240,7 +246,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-regression.Rmd",
 "text": "Edit"
 },
 "history": {

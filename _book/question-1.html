@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.1 Question 1 | Using R to generate data for questions</title>
   <meta name="description" content="2.1 Question 1 | Using R to generate data for questions" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.1 Question 1 | Using R to generate data for questions" />
   <meta property="og:type" content="book" />
@@ -48,24 +48,25 @@
 
 
 
+<script src="assets/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="assets/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="assets/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="assets/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -85,13 +86,13 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -104,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -135,14 +136,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">A Minimal Book Example</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a>
-<ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a><ul>
 <li class="chapter" data-level="1.1" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>1.1</b> Libraries</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="paper-1-example.html"><a href="paper-1-example.html"><i class="fa fa-check"></i><b>2</b> 2021 Paper 1 Example</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="question-1.html"><a href="question-1.html"><i class="fa fa-check"></i><b>2.1</b> Question 1</a>
-<ul>
+<li class="chapter" data-level="2" data-path="paper-1-example.html"><a href="paper-1-example.html"><i class="fa fa-check"></i><b>2</b> 2021 Paper 1 Example</a><ul>
+<li class="chapter" data-level="2.1" data-path="question-1.html"><a href="question-1.html"><i class="fa fa-check"></i><b>2.1</b> Question 1</a><ul>
 <li class="chapter" data-level="2.1.1" data-path="question-1.html"><a href="question-1.html#generating-a-random-sample-of-data"><i class="fa fa-check"></i><b>2.1.1</b> Generating a random sample of data</a></li>
 <li class="chapter" data-level="2.1.2" data-path="question-1.html"><a href="question-1.html#visualising-the-data"><i class="fa fa-check"></i><b>2.1.2</b> Visualising the data</a></li>
 <li class="chapter" data-level="2.1.3" data-path="question-1.html"><a href="question-1.html#setting-random-seeds-for-reproducability"><i class="fa fa-check"></i><b>2.1.3</b> Setting random seeds for reproducability</a></li>
@@ -152,10 +150,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="performing-a-z-test.html"><a href="performing-a-z-test.html"><i class="fa fa-check"></i><b>2.2</b> Performing a z-test</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="linear-model-example.html"><a href="linear-model-example.html"><i class="fa fa-check"></i><b>3</b> Linear model example</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="question.html"><a href="question.html"><i class="fa fa-check"></i><b>3.1</b> Question</a></li>
-<li class="chapter" data-level="3.2" data-path="generating-our-data.html"><a href="generating-our-data.html"><i class="fa fa-check"></i><b>3.2</b> Generating our data</a></li>
+<li class="chapter" data-level="3" data-path="linear-model-example.html"><a href="linear-model-example.html"><i class="fa fa-check"></i><b>3</b> Linear model example</a><ul>
+<li class="chapter" data-level="3.1" data-path="question.html"><a href="question.html"><i class="fa fa-check"></i><b>3.1</b> Question</a><ul>
+<li class="chapter" data-level="" data-path="question.html"><a href="question.html#question-3"><i class="fa fa-check"></i>Question 3</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="generating-data.html"><a href="generating-data.html"><i class="fa fa-check"></i><b>3.2</b> Generating data</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="generating-data.html"><a href="generating-data.html#explanatory-variable"><i class="fa fa-check"></i><b>3.2.1</b> Explanatory variable</a></li>
+<li class="chapter" data-level="3.2.2" data-path="generating-data.html"><a href="generating-data.html#using-a-linear-model-to-generate-the-response"><i class="fa fa-check"></i><b>3.2.2</b> Using a linear model to generate the response</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="fitting-a-linear-model.html"><a href="fitting-a-linear-model.html"><i class="fa fa-check"></i><b>3.3</b> Fitting a linear model</a></li>
+<li class="chapter" data-level="3.4" data-path="adding-the-linear-model-line-to-a-scatterplot.html"><a href="adding-the-linear-model-line-to-a-scatterplot.html"><i class="fa fa-check"></i><b>3.4</b> Adding the linear model line to a scatterplot</a></li>
+<li class="chapter" data-level="3.5" data-path="producing-model-diagnostics.html"><a href="producing-model-diagnostics.html"><i class="fa fa-check"></i><b>3.5</b> Producing model diagnostics</a></li>
+<li class="chapter" data-level="3.6" data-path="calculating-quantities-of-interest.html"><a href="calculating-quantities-of-interest.html"><i class="fa fa-check"></i><b>3.6</b> Calculating quantities of interest</a></li>
+<li class="chapter" data-level="3.7" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>3.7</b> Summary</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -177,17 +184,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="question-1" class="section level2 hasAnchor" number="2.1">
+<div id="question-1" class="section level2 hasAnchor">
 <h2><span class="header-section-number">2.1</span> Question 1<a href="question-1.html#question-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this example, we will take a look at question 1 from Paper 1 in 2021. This question is a report style question based on Google AI data of times taken to draw a cat or a dog. The example contains a stem and leaf diagram with the combined data and some summary statistics for both sets of drawings. Following this, a Mann-Whitney Test is carried out to test whether both samples have different average drawing times.</p>
 <p>We will now look at how we can draw a sample of the data from the question, by randomly sampling data for both groups using properties from their summary statistics</p>
-<div id="generating-a-random-sample-of-data" class="section level3 hasAnchor" number="2.1.1">
+<div id="generating-a-random-sample-of-data" class="section level3 hasAnchor">
 <h3><span class="header-section-number">2.1.1</span> Generating a random sample of data<a href="question-1.html#generating-a-random-sample-of-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can generate a random sample of data for both the categories using the summary statistics provided. As we can see from the stem and leaf diagram, the data have a lower bound, where we cannot observe any data below zero, as the data recorded are based on time elapsed.</p>
 <p>In order to sample data of this form, we can use a variation of the Normal distribution called the <a href="https://en.wikipedia.org/wiki/Truncated_normal_distribution">truncated normal distribution</a>, which allows us to bound a Normal distribution through a given range.</p>
 <p>To randomly sample data from this distribution, we can use the <code>rtruncnorm</code> function from the <code>truncnorm</code> package in R as follows:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="question-1.html#cb1-1" aria-hidden="true" tabindex="-1"></a>sample_dog <span class="ot">&lt;-</span> <span class="fu">rtruncnorm</span>(<span class="at">n=</span><span class="dv">145</span>, <span class="at">a=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">16</span>, <span class="at">mean=</span><span class="fl">7.5</span>, <span class="at">sd=</span><span class="fl">2.66</span>)</span>
-<span id="cb1-2"><a href="question-1.html#cb1-2" aria-hidden="true" tabindex="-1"></a>sample_cat <span class="ot">&lt;-</span> <span class="fu">rtruncnorm</span>(<span class="at">n=</span><span class="dv">121</span>, <span class="at">a=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">14</span>, <span class="at">mean=</span><span class="fl">5.4</span>, <span class="at">sd=</span><span class="fl">2.31</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="question-1.html#cb1-1"></a>sample_dog &lt;-<span class="st"> </span><span class="kw">rtruncnorm</span>(<span class="dt">n=</span><span class="dv">145</span>, <span class="dt">a=</span><span class="dv">0</span>, <span class="dt">b=</span><span class="dv">16</span>, <span class="dt">mean=</span><span class="fl">7.5</span>, <span class="dt">sd=</span><span class="fl">2.66</span>)</span>
+<span id="cb1-2"><a href="question-1.html#cb1-2"></a>sample_cat &lt;-<span class="st"> </span><span class="kw">rtruncnorm</span>(<span class="dt">n=</span><span class="dv">121</span>, <span class="dt">a=</span><span class="dv">0</span>, <span class="dt">b=</span><span class="dv">14</span>, <span class="dt">mean=</span><span class="fl">5.4</span>, <span class="dt">sd=</span><span class="fl">2.31</span>)</span></code></pre></div>
 <p>The parameters required are defined as follows:</p>
 <ul>
 <li><code>n</code> - the number of samples we wish to draw</li>
@@ -197,22 +204,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>sd</code> - the standard deviation of each group</li>
 </ul>
 <p>Running the code above will produce a sample for both groups based on their relative summary statistics. We can check the summary statistics of our data using <code>summary()</code></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="question-1.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sample_dog)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="question-1.html#cb2-1"></a><span class="kw">summary</span>(sample_dog)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   1.260   5.420   6.979   7.172   8.846  14.280</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="question-1.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sample_cat)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="question-1.html#cb4-1"></a><span class="kw">summary</span>(sample_cat)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##  0.5993  4.5442  5.9961  5.8839  6.9648 12.4311</code></pre>
 </div>
-<div id="visualising-the-data" class="section level3 hasAnchor" number="2.1.2">
+<div id="visualising-the-data" class="section level3 hasAnchor">
 <h3><span class="header-section-number">2.1.2</span> Visualising the data<a href="question-1.html#visualising-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can also check the distribution of our sampled data for comparison by visualising it using a histogram. The <code>ggplot2</code> library found in the <code>tidyverse</code> library provides several functions for data visualisation and has become more popular than base R graphics. We will use the <code>geom_histogram()</code> function from the library in this example as follows:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="question-1.html#cb6-1" aria-hidden="true" tabindex="-1"></a>dog_hist <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">data.frame</span>(sample_dog),<span class="fu">aes</span>(<span class="at">x=</span>sample_dog)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">fill=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb6-2"><a href="question-1.html#cb6-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Average draw time of dogs&quot;</span>,<span class="at">x=</span><span class="st">&quot;Time (s)&quot;</span>)</span>
-<span id="cb6-3"><a href="question-1.html#cb6-3" aria-hidden="true" tabindex="-1"></a>cat_hist <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">data.frame</span>(sample_cat),<span class="fu">aes</span>(<span class="at">x=</span>sample_cat)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">fill=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb6-4"><a href="question-1.html#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Average draw time of cats&quot;</span>,<span class="at">x=</span><span class="st">&quot;Time (s)&quot;</span>)</span>
-<span id="cb6-5"><a href="question-1.html#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="question-1.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(dog_hist,cat_hist,<span class="at">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="question-1.html#cb6-1"></a>dog_hist &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">data.frame</span>(sample_dog),<span class="kw">aes</span>(<span class="dt">x=</span>sample_dog)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">color=</span><span class="st">&quot;black&quot;</span>,<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb6-2"><a href="question-1.html#cb6-2"></a><span class="st">            </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Average draw time of dogs&quot;</span>,<span class="dt">x=</span><span class="st">&quot;Time (s)&quot;</span>)</span>
+<span id="cb6-3"><a href="question-1.html#cb6-3"></a>cat_hist &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">data.frame</span>(sample_cat),<span class="kw">aes</span>(<span class="dt">x=</span>sample_cat)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">color=</span><span class="st">&quot;black&quot;</span>,<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb6-4"><a href="question-1.html#cb6-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Average draw time of cats&quot;</span>,<span class="dt">x=</span><span class="st">&quot;Time (s)&quot;</span>)</span>
+<span id="cb6-5"><a href="question-1.html#cb6-5"></a></span>
+<span id="cb6-6"><a href="question-1.html#cb6-6"></a><span class="kw">grid.arrange</span>(dog_hist,cat_hist,<span class="dt">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="bookdown-demo_files/figure-html/histograms-1.png" width="672" /></p>
@@ -224,53 +231,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>We can label our plot using the <code>labs</code> argument, where we can include a <code>title</code> and an <code>x</code> axis label</li>
 </ul>
 <p>We can also alter the number of bins we use (<code>ggplot</code> will set a standard number of bins by default) using the <code>bins</code> argument. Let’s alter the number of bins for the dog data to be 10</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="question-1.html#cb8-1" aria-hidden="true" tabindex="-1"></a>dog_hist <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">data.frame</span>(sample_dog),<span class="fu">aes</span>(<span class="at">x=</span>sample_dog)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">fill=</span><span class="st">&quot;white&quot;</span>,<span class="at">bins=</span><span class="dv">10</span>) <span class="sc">+</span> </span>
-<span id="cb8-2"><a href="question-1.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Average draw time of dogs&quot;</span>,<span class="at">x=</span><span class="st">&quot;Time (s)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="question-1.html#cb8-1"></a>dog_hist &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">data.frame</span>(sample_dog),<span class="kw">aes</span>(<span class="dt">x=</span>sample_dog)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">color=</span><span class="st">&quot;black&quot;</span>,<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>,<span class="dt">bins=</span><span class="dv">10</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb8-2"><a href="question-1.html#cb8-2"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Average draw time of dogs&quot;</span>,<span class="dt">x=</span><span class="st">&quot;Time (s)&quot;</span>)</span></code></pre></div>
 </div>
-<div id="setting-random-seeds-for-reproducability" class="section level3 hasAnchor" number="2.1.3">
+<div id="setting-random-seeds-for-reproducability" class="section level3 hasAnchor">
 <h3><span class="header-section-number">2.1.3</span> Setting random seeds for reproducability<a href="question-1.html#setting-random-seeds-for-reproducability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When we randomly sample data each time in R, we will obtain a different sample than before. Let’s run our previous code twice to see if there is any differences:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="question-1.html#cb9-1" aria-hidden="true" tabindex="-1"></a>sample_dog1 <span class="ot">&lt;-</span> <span class="fu">rtruncnorm</span>(<span class="at">n=</span><span class="dv">145</span>, <span class="at">a=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">16</span>, <span class="at">mean=</span><span class="fl">7.5</span>, <span class="at">sd=</span><span class="fl">2.66</span>)</span>
-<span id="cb9-2"><a href="question-1.html#cb9-2" aria-hidden="true" tabindex="-1"></a>sample_dog2 <span class="ot">&lt;-</span> <span class="fu">rtruncnorm</span>(<span class="at">n=</span><span class="dv">145</span>, <span class="at">a=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">16</span>, <span class="at">mean=</span><span class="fl">7.5</span>, <span class="at">sd=</span><span class="fl">2.66</span>)</span>
-<span id="cb9-3"><a href="question-1.html#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="question-1.html#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sample_dog1)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="question-1.html#cb9-1"></a>sample_dog1 &lt;-<span class="st"> </span><span class="kw">rtruncnorm</span>(<span class="dt">n=</span><span class="dv">145</span>, <span class="dt">a=</span><span class="dv">0</span>, <span class="dt">b=</span><span class="dv">16</span>, <span class="dt">mean=</span><span class="fl">7.5</span>, <span class="dt">sd=</span><span class="fl">2.66</span>)</span>
+<span id="cb9-2"><a href="question-1.html#cb9-2"></a>sample_dog2 &lt;-<span class="st"> </span><span class="kw">rtruncnorm</span>(<span class="dt">n=</span><span class="dv">145</span>, <span class="dt">a=</span><span class="dv">0</span>, <span class="dt">b=</span><span class="dv">16</span>, <span class="dt">mean=</span><span class="fl">7.5</span>, <span class="dt">sd=</span><span class="fl">2.66</span>)</span>
+<span id="cb9-3"><a href="question-1.html#cb9-3"></a></span>
+<span id="cb9-4"><a href="question-1.html#cb9-4"></a><span class="kw">summary</span>(sample_dog1)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##  0.4464  5.7736  7.3936  7.5150  9.2837 13.4899</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="question-1.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sample_dog2)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="question-1.html#cb11-1"></a><span class="kw">summary</span>(sample_dog2)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##  0.2391  5.3456  7.5616  7.4537  9.2504 13.4568</code></pre>
 <p>We see that both samples produce different summary statistics. This can cause difficulty when you are working on a specific problem and want to design questions around the specific characteristics of the data you have sampled the first time.</p>
 <p>We can force R to use the same random number generation by using the <code>set.seed()</code> function. Here, we specify the seed from the random number generator we want to use each time we generate samples. This number can be any number you wish to choose! The example below highlights how this works:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="question-1.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2023</span>)</span>
-<span id="cb13-2"><a href="question-1.html#cb13-2" aria-hidden="true" tabindex="-1"></a>sample_dog1 <span class="ot">&lt;-</span> <span class="fu">rtruncnorm</span>(<span class="at">n=</span><span class="dv">145</span>, <span class="at">a=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">16</span>, <span class="at">mean=</span><span class="fl">7.5</span>, <span class="at">sd=</span><span class="fl">2.66</span>)</span>
-<span id="cb13-3"><a href="question-1.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2023</span>)</span>
-<span id="cb13-4"><a href="question-1.html#cb13-4" aria-hidden="true" tabindex="-1"></a>sample_dog2 <span class="ot">&lt;-</span> <span class="fu">rtruncnorm</span>(<span class="at">n=</span><span class="dv">145</span>, <span class="at">a=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">16</span>, <span class="at">mean=</span><span class="fl">7.5</span>, <span class="at">sd=</span><span class="fl">2.66</span>)</span>
-<span id="cb13-5"><a href="question-1.html#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="question-1.html#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sample_dog1)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="question-1.html#cb13-1"></a><span class="kw">set.seed</span>(<span class="dv">2023</span>)</span>
+<span id="cb13-2"><a href="question-1.html#cb13-2"></a>sample_dog1 &lt;-<span class="st"> </span><span class="kw">rtruncnorm</span>(<span class="dt">n=</span><span class="dv">145</span>, <span class="dt">a=</span><span class="dv">0</span>, <span class="dt">b=</span><span class="dv">16</span>, <span class="dt">mean=</span><span class="fl">7.5</span>, <span class="dt">sd=</span><span class="fl">2.66</span>)</span>
+<span id="cb13-3"><a href="question-1.html#cb13-3"></a><span class="kw">set.seed</span>(<span class="dv">2023</span>)</span>
+<span id="cb13-4"><a href="question-1.html#cb13-4"></a>sample_dog2 &lt;-<span class="st"> </span><span class="kw">rtruncnorm</span>(<span class="dt">n=</span><span class="dv">145</span>, <span class="dt">a=</span><span class="dv">0</span>, <span class="dt">b=</span><span class="dv">16</span>, <span class="dt">mean=</span><span class="fl">7.5</span>, <span class="dt">sd=</span><span class="fl">2.66</span>)</span>
+<span id="cb13-5"><a href="question-1.html#cb13-5"></a></span>
+<span id="cb13-6"><a href="question-1.html#cb13-6"></a><span class="kw">summary</span>(sample_dog1)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   2.006   6.316   7.545   7.798   9.365  14.776</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="question-1.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sample_dog2)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="question-1.html#cb15-1"></a><span class="kw">summary</span>(sample_dog2)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   2.006   6.316   7.545   7.798   9.365  14.776</code></pre>
 <p>Here, we see we can produce the same data as the first sample by setting the seed prior to sampling.</p>
 </div>
-<div id="manually-editing-data" class="section level3 hasAnchor" number="2.1.4">
+<div id="manually-editing-data" class="section level3 hasAnchor">
 <h3><span class="header-section-number">2.1.4</span> Manually editing data<a href="question-1.html#manually-editing-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If we take a sample of data and perhaps wish to add some additional variables to mimic the original data closer, this can easily be done in R. Let’s take a sample for the dog data but lower our boundary to 14 and visualise</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="question-1.html#cb17-1" aria-hidden="true" tabindex="-1"></a>sample_dog <span class="ot">&lt;-</span> <span class="fu">rtruncnorm</span>(<span class="at">n=</span><span class="dv">145</span>, <span class="at">a=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">14</span>, <span class="at">mean=</span><span class="fl">7.5</span>, <span class="at">sd=</span><span class="fl">2.66</span>)</span>
-<span id="cb17-2"><a href="question-1.html#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="question-1.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(sample_dog),<span class="fu">aes</span>(<span class="at">x=</span>sample_dog)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">fill=</span><span class="st">&quot;white&quot;</span>,<span class="at">bins=</span><span class="dv">12</span>) <span class="sc">+</span> </span>
-<span id="cb17-4"><a href="question-1.html#cb17-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Average draw time of dogs&quot;</span>,<span class="at">x=</span><span class="st">&quot;Time (s)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="question-1.html#cb17-1"></a>sample_dog &lt;-<span class="st"> </span><span class="kw">rtruncnorm</span>(<span class="dt">n=</span><span class="dv">145</span>, <span class="dt">a=</span><span class="dv">0</span>, <span class="dt">b=</span><span class="dv">14</span>, <span class="dt">mean=</span><span class="fl">7.5</span>, <span class="dt">sd=</span><span class="fl">2.66</span>)</span>
+<span id="cb17-2"><a href="question-1.html#cb17-2"></a></span>
+<span id="cb17-3"><a href="question-1.html#cb17-3"></a><span class="kw">ggplot</span>(<span class="kw">data.frame</span>(sample_dog),<span class="kw">aes</span>(<span class="dt">x=</span>sample_dog)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">color=</span><span class="st">&quot;black&quot;</span>,<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>,<span class="dt">bins=</span><span class="dv">12</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb17-4"><a href="question-1.html#cb17-4"></a><span class="st">            </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Average draw time of dogs&quot;</span>,<span class="dt">x=</span><span class="st">&quot;Time (s)&quot;</span>)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/lowsample-1.png" width="672" /></p>
 <p>When comparing this to the original data from the paper, we see that we do not observe the two outliers at 14.3 seconds and 15.2 seconds. We can manually add these values as follows:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="question-1.html#cb18-1" aria-hidden="true" tabindex="-1"></a>sample_dog <span class="ot">&lt;-</span> <span class="fu">c</span>(sample_dog, <span class="fu">c</span>(<span class="fl">14.3</span>,<span class="fl">15.2</span>))</span>
-<span id="cb18-2"><a href="question-1.html#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="question-1.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(sample_dog),<span class="fu">aes</span>(<span class="at">x=</span>sample_dog)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">fill=</span><span class="st">&quot;white&quot;</span>,<span class="at">bins=</span><span class="dv">12</span>) <span class="sc">+</span> </span>
-<span id="cb18-4"><a href="question-1.html#cb18-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Average draw time of dogs&quot;</span>,<span class="at">x=</span><span class="st">&quot;Time (s)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="question-1.html#cb18-1"></a>sample_dog &lt;-<span class="st"> </span><span class="kw">c</span>(sample_dog, <span class="kw">c</span>(<span class="fl">14.3</span>,<span class="fl">15.2</span>))</span>
+<span id="cb18-2"><a href="question-1.html#cb18-2"></a></span>
+<span id="cb18-3"><a href="question-1.html#cb18-3"></a><span class="kw">ggplot</span>(<span class="kw">data.frame</span>(sample_dog),<span class="kw">aes</span>(<span class="dt">x=</span>sample_dog)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">color=</span><span class="st">&quot;black&quot;</span>,<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>,<span class="dt">bins=</span><span class="dv">12</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb18-4"><a href="question-1.html#cb18-4"></a><span class="st">            </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Average draw time of dogs&quot;</span>,<span class="dt">x=</span><span class="st">&quot;Time (s)&quot;</span>)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/modify-1.png" width="672" />
 We now observe the two additional values in the histogram. For a vector of data, we can easily add new values using the <code>c()</code> command. This can be done by specifying our original data first, and then including our additional variables in a new <code>c()</code> object. If we only wish to add one value, we do not need to use <code>c()</code>.</p>
 </div>
-<div id="sampling-from-different-distributions" class="section level3 hasAnchor" number="2.1.5">
+<div id="sampling-from-different-distributions" class="section level3 hasAnchor">
 <h3><span class="header-section-number">2.1.5</span> Sampling from different distributions<a href="question-1.html#sampling-from-different-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In this case, the data shown roughly takes the form of a Normal distribution. There are several cases where this may not be an appropriate distribution. R contains a full range of different distributions we can sample from. Some common choices are shown below:</p>
 <ul>
@@ -282,14 +289,14 @@ We now observe the two additional values in the histogram. For a vector of data,
 </ul>
 <p>This list is not exhaustive, and R will contain libraries that will allow sampling from almost any known distribution.</p>
 </div>
-<div id="performing-a-mann-whitney-test" class="section level3 hasAnchor" number="2.1.6">
+<div id="performing-a-mann-whitney-test" class="section level3 hasAnchor">
 <h3><span class="header-section-number">2.1.6</span> Performing a Mann-Whitney Test<a href="question-1.html#performing-a-mann-whitney-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can carry out a Mann-Whitney test in R as follows</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="question-1.html#cb19-1" aria-hidden="true" tabindex="-1"></a>sample_dog <span class="ot">&lt;-</span> <span class="fu">rtruncnorm</span>(<span class="at">n=</span><span class="dv">145</span>, <span class="at">a=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">16</span>, <span class="at">mean=</span><span class="fl">7.5</span>, <span class="at">sd=</span><span class="fl">2.66</span>)</span>
-<span id="cb19-2"><a href="question-1.html#cb19-2" aria-hidden="true" tabindex="-1"></a>sample_cat <span class="ot">&lt;-</span> <span class="fu">rtruncnorm</span>(<span class="at">n=</span><span class="dv">121</span>, <span class="at">a=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">14</span>, <span class="at">mean=</span><span class="fl">5.4</span>, <span class="at">sd=</span><span class="fl">2.31</span>)</span>
-<span id="cb19-3"><a href="question-1.html#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="question-1.html#cb19-4" aria-hidden="true" tabindex="-1"></a>mann_whitney <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(sample_dog,sample_cat)</span>
-<span id="cb19-5"><a href="question-1.html#cb19-5" aria-hidden="true" tabindex="-1"></a>mann_whitney</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="question-1.html#cb19-1"></a>sample_dog &lt;-<span class="st"> </span><span class="kw">rtruncnorm</span>(<span class="dt">n=</span><span class="dv">145</span>, <span class="dt">a=</span><span class="dv">0</span>, <span class="dt">b=</span><span class="dv">16</span>, <span class="dt">mean=</span><span class="fl">7.5</span>, <span class="dt">sd=</span><span class="fl">2.66</span>)</span>
+<span id="cb19-2"><a href="question-1.html#cb19-2"></a>sample_cat &lt;-<span class="st"> </span><span class="kw">rtruncnorm</span>(<span class="dt">n=</span><span class="dv">121</span>, <span class="dt">a=</span><span class="dv">0</span>, <span class="dt">b=</span><span class="dv">14</span>, <span class="dt">mean=</span><span class="fl">5.4</span>, <span class="dt">sd=</span><span class="fl">2.31</span>)</span>
+<span id="cb19-3"><a href="question-1.html#cb19-3"></a></span>
+<span id="cb19-4"><a href="question-1.html#cb19-4"></a>mann_whitney &lt;-<span class="st"> </span><span class="kw">wilcox.test</span>(sample_dog,sample_cat)</span>
+<span id="cb19-5"><a href="question-1.html#cb19-5"></a>mann_whitney</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum test with continuity correction
 ## 
