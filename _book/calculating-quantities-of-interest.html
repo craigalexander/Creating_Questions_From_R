@@ -145,18 +145,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="question-1.html#generating-a-random-sample-of-data" id="toc-generating-a-random-sample-of-data"><span class="toc-section-number">2.1.1</span> Generating a random sample of data</a></li>
 <li><a href="question-1.html#visualising-the-data" id="toc-visualising-the-data"><span class="toc-section-number">2.1.2</span> Visualising the data</a></li>
-<li><a href="question-1.html#setting-random-seeds-for-reproducability" id="toc-setting-random-seeds-for-reproducability"><span class="toc-section-number">2.1.3</span> Setting random seeds for reproducability</a></li>
+<li><a href="question-1.html#setting-random-seeds-for-reproducibility" id="toc-setting-random-seeds-for-reproducibility"><span class="toc-section-number">2.1.3</span> Setting random seeds for reproducibility</a></li>
 <li><a href="question-1.html#manually-editing-data" id="toc-manually-editing-data"><span class="toc-section-number">2.1.4</span> Manually editing data</a></li>
 <li><a href="question-1.html#sampling-from-different-distributions" id="toc-sampling-from-different-distributions"><span class="toc-section-number">2.1.5</span> Sampling from different distributions</a></li>
-<li><a href="question-1.html#performing-a-z-test" id="toc-performing-a-z-test"><span class="toc-section-number">2.1.6</span> Performing a z-test</a></li>
+<li><a href="question-1.html#performing-a-mann-whitney-test" id="toc-performing-a-mann-whitney-test"><span class="toc-section-number">2.1.6</span> Performing a Mann-Whitney Test</a></li>
 </ul></li>
+<li><a href="performing-a-z-test.html#performing-a-z-test" id="toc-performing-a-z-test"><span class="toc-section-number">2.2</span> Performing a z-test</a></li>
 </ul></li>
 <li><a href="linear-model-example.html#linear-model-example" id="toc-linear-model-example"><span class="toc-section-number">3</span> Linear model example</a>
 <ul>
-<li><a href="question.html#question" id="toc-question"><span class="toc-section-number">3.1</span> Question</a>
-<ul>
-<li><a href="question.html#question-3" id="toc-question-3">Question 3</a></li>
-</ul></li>
+<li><a href="question.html#question" id="toc-question"><span class="toc-section-number">3.1</span> Question</a></li>
 <li><a href="generating-data.html#generating-data" id="toc-generating-data"><span class="toc-section-number">3.2</span> Generating data</a>
 <ul>
 <li><a href="generating-data.html#explanatory-variable" id="toc-explanatory-variable"><span class="toc-section-number">3.2.1</span> Explanatory variable</a></li>
@@ -191,19 +189,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="calculating-quantities-of-interest" class="section level2 hasAnchor" number="3.6">
 <h2><span class="header-section-number">3.6</span> Calculating quantities of interest<a href="calculating-quantities-of-interest.html#calculating-quantities-of-interest" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You can also calculate quantities such as <span class="math inline">\(S_{xx}, S_{yy}\)</span> and <span class="math inline">\(S_{xy}\)</span> to be used in questions for calcuating estimates by hand.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="calculating-quantities-of-interest.html#cb35-1" aria-hidden="true" tabindex="-1"></a>S.xx <span class="ot">&lt;-</span> <span class="fu">sum</span>((temp <span class="sc">-</span> <span class="fu">mean</span>(temp))<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb35-2"><a href="calculating-quantities-of-interest.html#cb35-2" aria-hidden="true" tabindex="-1"></a>S.yy <span class="ot">&lt;-</span> <span class="fu">sum</span>((waste <span class="sc">-</span> <span class="fu">mean</span>(waste))<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb35-3"><a href="calculating-quantities-of-interest.html#cb35-3" aria-hidden="true" tabindex="-1"></a>S.xy <span class="ot">&lt;-</span> <span class="fu">sum</span>((temp <span class="sc">-</span> <span class="fu">mean</span>(temp)) <span class="sc">*</span> (waste <span class="sc">-</span> <span class="fu">mean</span>(waste)))</span>
-<span id="cb35-4"><a href="calculating-quantities-of-interest.html#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-5"><a href="calculating-quantities-of-interest.html#cb35-5" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> S.xy<span class="sc">/</span>(<span class="fu">sqrt</span>(S.xx<span class="sc">*</span>S.yy))</span>
-<span id="cb35-6"><a href="calculating-quantities-of-interest.html#cb35-6" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> S.xy<span class="sc">/</span>S.xx</span>
-<span id="cb35-7"><a href="calculating-quantities-of-interest.html#cb35-7" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fu">mean</span>(waste) <span class="sc">-</span> beta<span class="sc">*</span><span class="fu">mean</span>(temp)</span>
-<span id="cb35-8"><a href="calculating-quantities-of-interest.html#cb35-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-9"><a href="calculating-quantities-of-interest.html#cb35-9" aria-hidden="true" tabindex="-1"></a>r</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="calculating-quantities-of-interest.html#cb36-1" aria-hidden="true" tabindex="-1"></a>S.xx <span class="ot">&lt;-</span> <span class="fu">sum</span>((temp <span class="sc">-</span> <span class="fu">mean</span>(temp))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb36-2"><a href="calculating-quantities-of-interest.html#cb36-2" aria-hidden="true" tabindex="-1"></a>S.yy <span class="ot">&lt;-</span> <span class="fu">sum</span>((waste <span class="sc">-</span> <span class="fu">mean</span>(waste))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb36-3"><a href="calculating-quantities-of-interest.html#cb36-3" aria-hidden="true" tabindex="-1"></a>S.xy <span class="ot">&lt;-</span> <span class="fu">sum</span>((temp <span class="sc">-</span> <span class="fu">mean</span>(temp)) <span class="sc">*</span> (waste <span class="sc">-</span> <span class="fu">mean</span>(waste)))</span>
+<span id="cb36-4"><a href="calculating-quantities-of-interest.html#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="calculating-quantities-of-interest.html#cb36-5" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> S.xy<span class="sc">/</span>(<span class="fu">sqrt</span>(S.xx<span class="sc">*</span>S.yy))</span>
+<span id="cb36-6"><a href="calculating-quantities-of-interest.html#cb36-6" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> S.xy<span class="sc">/</span>S.xx</span>
+<span id="cb36-7"><a href="calculating-quantities-of-interest.html#cb36-7" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fu">mean</span>(waste) <span class="sc">-</span> beta<span class="sc">*</span><span class="fu">mean</span>(temp)</span>
+<span id="cb36-8"><a href="calculating-quantities-of-interest.html#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="calculating-quantities-of-interest.html#cb36-9" aria-hidden="true" tabindex="-1"></a>r</span></code></pre></div>
 <pre><code>## [1] -0.9034156</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="calculating-quantities-of-interest.html#cb37-1" aria-hidden="true" tabindex="-1"></a>beta</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="calculating-quantities-of-interest.html#cb38-1" aria-hidden="true" tabindex="-1"></a>beta</span></code></pre></div>
 <pre><code>## [1] -10.91007</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="calculating-quantities-of-interest.html#cb39-1" aria-hidden="true" tabindex="-1"></a>alpha</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="calculating-quantities-of-interest.html#cb40-1" aria-hidden="true" tabindex="-1"></a>alpha</span></code></pre></div>
 <pre><code>## [1] 596.9391</code></pre>
 </div>
             </section>

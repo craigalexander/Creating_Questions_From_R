@@ -145,18 +145,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="question-1.html#generating-a-random-sample-of-data" id="toc-generating-a-random-sample-of-data"><span class="toc-section-number">2.1.1</span> Generating a random sample of data</a></li>
 <li><a href="question-1.html#visualising-the-data" id="toc-visualising-the-data"><span class="toc-section-number">2.1.2</span> Visualising the data</a></li>
-<li><a href="question-1.html#setting-random-seeds-for-reproducability" id="toc-setting-random-seeds-for-reproducability"><span class="toc-section-number">2.1.3</span> Setting random seeds for reproducability</a></li>
+<li><a href="question-1.html#setting-random-seeds-for-reproducibility" id="toc-setting-random-seeds-for-reproducibility"><span class="toc-section-number">2.1.3</span> Setting random seeds for reproducibility</a></li>
 <li><a href="question-1.html#manually-editing-data" id="toc-manually-editing-data"><span class="toc-section-number">2.1.4</span> Manually editing data</a></li>
 <li><a href="question-1.html#sampling-from-different-distributions" id="toc-sampling-from-different-distributions"><span class="toc-section-number">2.1.5</span> Sampling from different distributions</a></li>
-<li><a href="question-1.html#performing-a-z-test" id="toc-performing-a-z-test"><span class="toc-section-number">2.1.6</span> Performing a z-test</a></li>
+<li><a href="question-1.html#performing-a-mann-whitney-test" id="toc-performing-a-mann-whitney-test"><span class="toc-section-number">2.1.6</span> Performing a Mann-Whitney Test</a></li>
 </ul></li>
+<li><a href="performing-a-z-test.html#performing-a-z-test" id="toc-performing-a-z-test"><span class="toc-section-number">2.2</span> Performing a z-test</a></li>
 </ul></li>
 <li><a href="linear-model-example.html#linear-model-example" id="toc-linear-model-example"><span class="toc-section-number">3</span> Linear model example</a>
 <ul>
-<li><a href="question.html#question" id="toc-question"><span class="toc-section-number">3.1</span> Question</a>
-<ul>
-<li><a href="question.html#question-3" id="toc-question-3">Question 3</a></li>
-</ul></li>
+<li><a href="question.html#question" id="toc-question"><span class="toc-section-number">3.1</span> Question</a></li>
 <li><a href="generating-data.html#generating-data" id="toc-generating-data"><span class="toc-section-number">3.2</span> Generating data</a>
 <ul>
 <li><a href="generating-data.html#explanatory-variable" id="toc-explanatory-variable"><span class="toc-section-number">3.2.1</span> Explanatory variable</a></li>
@@ -191,8 +189,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fitting-a-linear-model" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Fitting a linear model<a href="fitting-a-linear-model.html#fitting-a-linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now that we have simulated values for <span class="math inline">\(temperature\)</span> and <span class="math inline">\(waste\)</span> we can now fit a linear model and generate output that can be used to create questions.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="fitting-a-linear-model.html#cb30-1" aria-hidden="true" tabindex="-1"></a>model<span class="ot">&lt;-</span><span class="fu">lm</span>(waste<span class="sc">~</span>temp)</span>
-<span id="cb30-2"><a href="fitting-a-linear-model.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="fitting-a-linear-model.html#cb31-1" aria-hidden="true" tabindex="-1"></a>model<span class="ot">&lt;-</span><span class="fu">lm</span>(waste<span class="sc">~</span>temp)</span>
+<span id="cb31-2"><a href="fitting-a-linear-model.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = waste ~ temp)

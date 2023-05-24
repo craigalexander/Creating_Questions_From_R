@@ -66,20 +66,25 @@
 <p>The estimated linear model is:</p>
 <p><span class="math display">\[\hat{waste} = 597 - 10.91 \times temperature.\]</span></p>
 <ol style="list-style-type: decimal">
-<li><p>What is the predicted waste for a store location whose average temperature is 18<span class="math inline">\(^{\circ}\)</span>C?</p></li>
-<li><p>The standard error for the slope coefficient is 0.92, which is associated with <span class="math inline">\(df=32\)</span>. Calculate a 95% confidence interval for the slope parameter.</p></li>
+<li>What is the predicted waste for a store location whose average temperature is 18<span class="math inline">\(^{\circ}\)</span>C? <em>Provide your answer to two decimal places.</em>
+</li>
 </ol>
-<div id="question-3" class="section level3 unnumbered">
-<h3>Question 3<a class="anchor" aria-label="anchor" href="#question-3"><i class="fas fa-link"></i></a>
-</h3>
+<p><input class="webex-solveme nospaces" size="6" data-answer='["400.62"]'></p>
+<ol start="2" style="list-style-type: decimal">
+<li>The standard error for the slope coefficient is 0.92, which is associated with <span class="math inline">\(df=32\)</span>. Calculate a 95% confidence interval for the slope parameter. <em>Provide your answer to two decimal places.</em>
+</li>
+</ol>
+<p>Lower:<input class="webex-solveme nospaces" size="6" data-answer='["-12.78"]'><br>
+Upper:<input class="webex-solveme nospaces" size="5" data-answer='["-9.04"]'></p>
 <p><br></p>
-<p><strong>Suppose you performed a hypothesis test to test if average temperature is a significant predictor of ice cream waste. Working at a significance level of 5%, would you expect the p-value of the hypothesis test to be:</strong></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Suppose you performed a hypothesis test to test if average temperature is a significant predictor of ice cream waste. Working at a significance level of 5%, would you expect the p-value of the hypothesis test to be:</li>
+</ol>
 <p><select class="webex-select"><option value="blank"></option>
 <option value="">greater than 0.05</option>
 <option value="">Cannot tell with the information provided</option>
 <option value="answer">less than 0.05</option></select></p>
 <p><br></p>
-</div>
 </div>
 <div id="generating-data" class="section level2" number="3.2">
 <h2>
@@ -96,7 +101,7 @@
 <span class="header-section-number">3.2.1</span> Explanatory variable<a class="anchor" aria-label="anchor" href="#explanatory-variable"><i class="fas fa-link"></i></a>
 </h3>
 <p>Let’s start by generating our x-variable, <span class="math inline">\(temperature\)</span>. We will use a Normal distribution to do this since our variable is continuous.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">temp</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">34</span>, mean<span class="op">=</span><span class="fl">12</span>, sd<span class="op">=</span><span class="fl">4</span><span class="op">)</span></code></pre></div>
 <p>The parameters required are defined as follows:</p>
 <ul>
@@ -107,11 +112,11 @@
 <li>
 <code>sd</code> - the standard deviation for <span class="math inline">\(temperature\)</span>. Again go for something that seems sensible (high enough to show some variability, but not too high that the values at the extreme are no longer sensible). This can take a bit of trial and error.</li>
 </ul>
-<p>Let’s take a look at our simulated data to check that is looks sensible. To do this we will the <code>geom_histogram()</code> function that we used in our previous example.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">temp</span><span class="op">)</span>,<span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">temp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">geom_histogram</span><span class="op">(</span>color<span class="op">=</span><span class="st">"black"</span>,fill<span class="op">=</span><span class="st">"white"</span>, bins<span class="op">=</span><span class="fl">10</span><span class="op">)</span> <span class="op">+</span> 
-            <span class="fu">labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Average temperature"</span><span class="op">)</span></code></pre></div>
+<p>Let’s take a look at our simulated data to check that is looks sensible. To do this we will the <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> function that we used in our previous example.</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">temp</span><span class="op">)</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">temp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"black"</span>,fill<span class="op">=</span><span class="st">"white"</span>, bins<span class="op">=</span><span class="fl">10</span><span class="op">)</span> <span class="op">+</span> 
+            <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Average temperature"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="bookdown-demo_files/figure-html/xhist-1.png" width="672"></div>
 <p><strong>Exercise</strong>
 Change the values of the <code>mean</code> and <code>sd</code> in the code above and plot a histogram of the newly simulated <span class="math inline">\(x\)</span> value to see how the data changes.</p>
@@ -123,7 +128,7 @@ Change the values of the <code>mean</code> and <code>sd</code> in the code above
 <p>In order to generate the response variable <span class="math inline">\(y\)</span> we need to choose a sensible linear model which will relate the explantory variable <span class="math inline">\(x\)</span> to the response variable <span class="math inline">\(y\)</span>.</p>
 <p>To specify a simple linear model we need to choose two values, the intercept, <span class="math inline">\(\alpha\)</span>, and the slope, <span class="math inline">\(\beta\)</span>. In this example we want to estimate ice cream waste from average temperature, we are therefore going to assume there is a <em>negative</em> relationship between these variables, i.e. the warmer it is, the more ice cream you will sell! Therefore, the slope parameter (<span class="math inline">\(\beta\)</span>) should be negative. The size of this will depend on what you think is a sensible interpretation. Here let’s go for -10.65, so for every unit increase in average temperature, ice cream waste decreases by 10.65kg. For the intercept, again think about a sensible value based on the context. Remember this value is where the regression line will cut the y-axis. Let’s choose 591. The choice for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> will be subjective, and might take some trial and error before deciding on your final values. Just make sure that the interpretation of the final model is sensible.</p>
 <p>We can now generate the response variable, <span class="math inline">\(y\)</span> as follows:</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">waste</span><span class="op">&lt;-</span><span class="fl">591</span> <span class="op">-</span> <span class="fl">10.65</span><span class="op">*</span><span class="va">temp</span></code></pre></div>
 <p>where</p>
 <ul>
@@ -132,32 +137,32 @@ Change the values of the <code>mean</code> and <code>sd</code> in the code above
 <li>
 <code>temp</code> is the x-variable we have already simulated.</li>
 </ul>
-<p>Let’s now produce a scatterplot of our data using <code>ggplot2</code>. We will use a similar structure to the plots we have produced previously but we will use the <code>geom_point()</code> function to produce a scatterplot as follows:</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<p>Let’s now produce a scatterplot of our data using <code>ggplot2</code>. We will use a similar structure to the plots we have produced previously but we will use the <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> function to produce a scatterplot as follows:</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">data</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>waste<span class="op">=</span><span class="va">waste</span>, temp<span class="op">=</span><span class="va">temp</span><span class="op">)</span>
 
-<span class="fu">ggplot</span><span class="op">(</span><span class="va">data</span>, <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">temp</span>, y<span class="op">=</span><span class="va">waste</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Average temperature"</span>, y<span class="op">=</span><span class="st">"Ice cream waste"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">temp</span>, y<span class="op">=</span><span class="va">waste</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Average temperature"</span>, y<span class="op">=</span><span class="st">"Ice cream waste"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="bookdown-demo_files/figure-html/xyscatter-1.png" width="672"></div>
 <p>To create this scatterplot we first had to store our two variables in a <em>dataframe</em> which we called <code>data</code>. Here we are creating a dataframe with two columns which we have given the same names as the two data vectors we have already created, namely <code>waste</code> and <code>temp</code>. In these columns we are simply storing the data vectors we have simulated above. We then create the scatterplot which works as follows:</p>
 <ul>
 <li>First we specify our data using <code>ggplot(data)</code>.</li>
-<li>We then specify the variables we want to plot using the <code>aes()</code> argument, where <code>x=temp</code> and <code>y=waste</code>.</li>
-<li>We then generate the scatterplot using <code>geom_point()</code>. Here we have used the default values so we don’t need to specify anything within this function.</li>
+<li>We then specify the variables we want to plot using the <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> argument, where <code>x=temp</code> and <code>y=waste</code>.</li>
+<li>We then generate the scatterplot using <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>. Here we have used the default values so we don’t need to specify anything within this function.</li>
 <li>Finally, we label our x and y axis using the <code>labs</code> function.</li>
 </ul>
 <p>Now, you may have noticed that our scatterplot has identified an issue with the data we have generated. The code we have used has produced a perfect linear relationship between <span class="math inline">\(temperature\)</span> and <span class="math inline">\(waste\)</span>. This does not seem realistic so we need to add some random noise to <span class="math inline">\(y\)</span>. We can do this by adding some randomly generated values from a normal distribution with mean 0. Think of this as adding residuals to our model.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">waste</span><span class="op">&lt;-</span><span class="fl">591</span> <span class="op">-</span> <span class="fl">10.65</span><span class="op">*</span><span class="va">temp</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">34</span>, mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">20</span><span class="op">)</span></code></pre></div>
 <p>We always want the model residuals to be centered on 0, so the mean within <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> should be 0. The level of variability within <span class="math inline">\(y\)</span> can be controlled via the standard deviation (<code>sd</code>). Again, this might take some trial and error to get something you are happy with.</p>
 <p>Let’s take a look at the scatterplot with our newly generated response.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">data</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>waste<span class="op">=</span><span class="va">waste</span>, temp<span class="op">=</span><span class="va">temp</span><span class="op">)</span>
 
-<span class="fu">ggplot</span><span class="op">(</span><span class="va">data</span>, <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">temp</span>, y<span class="op">=</span><span class="va">waste</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Average temperature"</span>, y<span class="op">=</span><span class="st">"Ice cream waste"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">temp</span>, y<span class="op">=</span><span class="va">waste</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Average temperature"</span>, y<span class="op">=</span><span class="st">"Ice cream waste"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="bookdown-demo_files/figure-html/xyscatter2-1.png" width="672"></div>
 <p>That looks better!</p>
 <p><strong>Exercise</strong>
@@ -170,7 +175,7 @@ Change the values of the <code>mean</code> and <code>sd</code> in the code above
 <span class="header-section-number">3.3</span> Fitting a linear model<a class="anchor" aria-label="anchor" href="#fitting-a-linear-model"><i class="fas fa-link"></i></a>
 </h2>
 <p>Now that we have simulated values for <span class="math inline">\(temperature\)</span> and <span class="math inline">\(waste\)</span> we can now fit a linear model and generate output that can be used to create questions.</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">model</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">waste</span><span class="op">~</span><span class="va">temp</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
@@ -198,14 +203,14 @@ Change the values of the <code>mean</code> and <code>sd</code> in the code above
 <span class="header-section-number">3.4</span> Adding the linear model line to a scatterplot<a class="anchor" aria-label="anchor" href="#adding-the-linear-model-line-to-a-scatterplot"><i class="fas fa-link"></i></a>
 </h2>
 <p>We can now add our fitted model and 95% confidence interval to the scatterplot of our data using the following code.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">data</span>, <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">temp</span>, y<span class="op">=</span><span class="va">waste</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Average temperature"</span>, y<span class="op">=</span><span class="st">"Ice cream waste"</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">geom_smooth</span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>, se<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">temp</span>, y<span class="op">=</span><span class="va">waste</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Average temperature"</span>, y<span class="op">=</span><span class="st">"Ice cream waste"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>, se<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula 'y ~ x'</code></pre>
 <div class="inline-figure"><img src="bookdown-demo_files/figure-html/xyscatter3-1.png" width="672"></div>
-<p>To generate this plot we have used the same code as previously and added the <code>geom_smooth()</code> with the following arguments:</p>
+<p>To generate this plot we have used the same code as previously and added the <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> with the following arguments:</p>
 <ul>
 <li>
 <code>method = lm</code> - fit a linear model line to the plot.</li>
@@ -217,9 +222,9 @@ Change the values of the <code>mean</code> and <code>sd</code> in the code above
 <h2>
 <span class="header-section-number">3.5</span> Producing model diagnostics<a class="anchor" aria-label="anchor" href="#producing-model-diagnostics"><i class="fas fa-link"></i></a>
 </h2>
-<p>We can use the <code>autoplot()</code> function in the <code>ggfortify</code> library to create diagnostic plots for our linear model using <code>ggplot2</code> as follows:</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">autoplot</span><span class="op">(</span><span class="va">model</span><span class="op">)</span></code></pre></div>
+<p>We can use the <code><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot()</a></code> function in the <code>ggfortify</code> library to create diagnostic plots for our linear model using <code>ggplot2</code> as follows:</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="bookdown-demo_files/figure-html/modeldiag-1.png" width="672"></div>
 </div>
 <div id="calculating-quantities-of-interest" class="section level2" number="3.6">
@@ -227,7 +232,7 @@ Change the values of the <code>mean</code> and <code>sd</code> in the code above
 <span class="header-section-number">3.6</span> Calculating quantities of interest<a class="anchor" aria-label="anchor" href="#calculating-quantities-of-interest"><i class="fas fa-link"></i></a>
 </h2>
 <p>You can also calculate quantities such as <span class="math inline">\(S_{xx}, S_{yy}\)</span> and <span class="math inline">\(S_{xy}\)</span> to be used in questions for calcuating estimates by hand.</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">S.xx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">temp</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">temp</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
 <span class="va">S.yy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">waste</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">waste</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
 <span class="va">S.xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">temp</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">temp</span><span class="op">)</span><span class="op">)</span> <span class="op">*</span> <span class="op">(</span><span class="va">waste</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">waste</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
@@ -238,10 +243,10 @@ Change the values of the <code>mean</code> and <code>sd</code> in the code above
 
 <span class="va">r</span></code></pre></div>
 <pre><code>## [1] -0.9034156</code></pre>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">beta</span></code></pre></div>
 <pre><code>## [1] -10.91007</code></pre>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">alpha</span></code></pre></div>
 <pre><code>## [1] 596.9391</code></pre>
 </div>
@@ -261,9 +266,7 @@ Change the values of the <code>mean</code> and <code>sd</code> in the code above
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#linear-model-example"><span class="header-section-number">3</span> Linear model example</a></li>
-<li>
-<a class="nav-link" href="#question"><span class="header-section-number">3.1</span> Question</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#question-3">Question 3</a></li></ul>
-</li>
+<li><a class="nav-link" href="#question"><span class="header-section-number">3.1</span> Question</a></li>
 <li>
 <a class="nav-link" href="#generating-data"><span class="header-section-number">3.2</span> Generating data</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#explanatory-variable"><span class="header-section-number">3.2.1</span> Explanatory variable</a></li>

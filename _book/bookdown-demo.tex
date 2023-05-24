@@ -141,7 +141,19 @@ In this session, we will take a look at how we can use R to generate data to cre
 \hypertarget{libraries}{%
 \section{Libraries}\label{libraries}}
 
-Throughout this tutorial, we will use some libraries within R. If you would prefer to work through the examples on R, you will need to install the following libraries:
+Throughout this tutorial, we will use some libraries within R. If you are logged into a University computer, please load the following libraries:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(truncnorm)}
+\FunctionTok{library}\NormalTok{(gridExtra)}
+\FunctionTok{library}\NormalTok{(BSDA)}
+\FunctionTok{library}\NormalTok{(ggfortify)}
+\end{Highlighting}
+\end{Shaded}
+
+If you would prefer to work through the examples on your own device, you will need to install the following libraries:
 
 \begin{itemize}
 \tightlist
@@ -153,6 +165,8 @@ Throughout this tutorial, we will use some libraries within R. If you would pref
   \texttt{gridExtra}
 \item
   \texttt{BSDA}
+\item
+  \texttt{ggfortify}
 \end{itemize}
 
 \hypertarget{paper-1-example}{%
@@ -161,9 +175,9 @@ Throughout this tutorial, we will use some libraries within R. If you would pref
 \hypertarget{question-1}{%
 \section{Question 1}\label{question-1}}
 
-In this example, we will take a look at question 1 from Paper 1 in 2021. This question is a report style question based on Google AI data of times taken to draw a cat or a dog. The example contains a stem and leaf diagram with the combined data and some summary statistics for both sets of drawings. Following this, a Mann-Whitney Test is carried out to test whether both samples have different average drawing times.
+In this example, we will take a look at question 1 from \href{https://www.sqa.org.uk/sqa/files_ccc/NAH_Statistics_Paper1_2021.pdf}{Paper 1} in 2021. This question is a report style question based on Google AI data of times taken to draw a cat or a dog. The example contains a stem and leaf diagram with the combined data and some summary statistics for both sets of drawings. Following this, a Mann-Whitney Test is carried out to test whether both samples have different average drawing times.
 
-We will now look at how we can draw a sample of the data from the question, by randomly sampling data for both groups using properties from their summary statistics
+We will now look at how we can simulate a sample of the data from the question, by randomly sampling data for both groups using properties from their summary statistics
 
 \hypertarget{generating-a-random-sample-of-data}{%
 \subsection{Generating a random sample of data}\label{generating-a-random-sample-of-data}}
@@ -176,8 +190,8 @@ To randomly sample data from this distribution, we can use the \texttt{rtruncnor
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{sample\_dog }\OtherTok{\textless{}{-}} \FunctionTok{rtruncnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{145}\NormalTok{, }\AttributeTok{a=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{16}\NormalTok{, }\AttributeTok{mean=}\FloatTok{7.5}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.66}\NormalTok{)}
 \NormalTok{sample\_cat }\OtherTok{\textless{}{-}} \FunctionTok{rtruncnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{121}\NormalTok{, }\AttributeTok{a=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{14}\NormalTok{, }\AttributeTok{mean=}\FloatTok{5.4}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.31}\NormalTok{)}
+\NormalTok{sample\_dog }\OtherTok{\textless{}{-}} \FunctionTok{rtruncnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{145}\NormalTok{, }\AttributeTok{a=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{16}\NormalTok{, }\AttributeTok{mean=}\FloatTok{7.5}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.66}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -201,28 +215,30 @@ Running the code above will produce a sample for both groups based on their rela
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{summary}\NormalTok{(sample\_dog)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   1.260   5.420   6.979   7.172   8.846  14.280
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(sample\_cat)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.5993  4.5442  5.9961  5.8839  6.9648 12.4311
+##  0.3641  3.4919  4.7518  5.0838  6.3575 11.2882
 \end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(sample\_dog)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.2323  6.4623  8.1252  7.9339  9.3019 15.5964
+\end{verbatim}
+
+We can now compare these summary statistics to those of the real data provided in the paper and notice that our simulated data produces fairly similar summary statistics.
+
 \textbf{Exercise}
-Try changing the values of \texttt{a,\ b,\ mean} and \texttt{sd} in the examples above to see how this changes the summary statistics of the data
+Try editing some of the parameters in \texttt{rtruncnorm} to see how this changes the summary statistics you obtain.
 
 \hypertarget{visualising-the-data}{%
 \subsection{Visualising the data}\label{visualising-the-data}}
@@ -231,12 +247,14 @@ We can also check the distribution of our sampled data for comparison by visuali
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{dog\_hist }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(sample\_dog),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{sample\_dog)) }\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{fill=}\StringTok{"white"}\NormalTok{) }\SpecialCharTok{+} 
+\NormalTok{dog\_hist }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(sample\_dog),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{sample\_dog))}\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{fill=}\StringTok{"white"}\NormalTok{) }\SpecialCharTok{+} 
             \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{"Average draw time of dogs"}\NormalTok{,}\AttributeTok{x=}\StringTok{"Time (s)"}\NormalTok{)}
-\NormalTok{cat\_hist }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(sample\_cat),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{sample\_cat)) }\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{fill=}\StringTok{"white"}\NormalTok{) }\SpecialCharTok{+} 
+\NormalTok{cat\_hist }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(sample\_cat),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{sample\_cat))}\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{fill=}\StringTok{"white"}\NormalTok{) }\SpecialCharTok{+} 
   \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{"Average draw time of cats"}\NormalTok{,}\AttributeTok{x=}\StringTok{"Time (s)"}\NormalTok{)}
 
-\FunctionTok{grid.arrange}\NormalTok{(dog\_hist,cat\_hist,}\AttributeTok{ncol=}\DecValTok{2}\NormalTok{)}
+\FunctionTok{grid.arrange}\NormalTok{(cat\_hist, dog\_hist,}\AttributeTok{ncol=}\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -265,16 +283,17 @@ We can also alter the number of bins we use (\texttt{ggplot} will set a standard
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{dog\_hist }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(sample\_dog),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{sample\_dog)) }\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{fill=}\StringTok{"white"}\NormalTok{,}\AttributeTok{bins=}\DecValTok{10}\NormalTok{) }\SpecialCharTok{+} 
+\NormalTok{dog\_hist }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(sample\_dog),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{sample\_dog))}\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{fill=}\StringTok{"white"}\NormalTok{,}\AttributeTok{bins=}\DecValTok{10}\NormalTok{) }\SpecialCharTok{+} 
   \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{"Average draw time of dogs"}\NormalTok{,}\AttributeTok{x=}\StringTok{"Time (s)"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \textbf{Exercise}
-Try modifying the histograms produced here. You can look to change the colour scheme, labels and the number of bins used.
+Try edit some of the inputs to the histogram plot. You can change the colour scheme, number of bins and the labels for the plot.
 
-\hypertarget{setting-random-seeds-for-reproducability}{%
-\subsection{Setting random seeds for reproducability}\label{setting-random-seeds-for-reproducability}}
+\hypertarget{setting-random-seeds-for-reproducibility}{%
+\subsection{Setting random seeds for reproducibility}\label{setting-random-seeds-for-reproducibility}}
 
 When we randomly sample data each time in R, we will obtain a different sample than before. Let's run our previous code twice to see if there is any differences:
 
@@ -337,20 +356,21 @@ We can force R to use the same random number generation by using the \texttt{set
 Here, we see we can produce the same data as the first sample by setting the seed prior to sampling.
 
 \textbf{Exercise}
-Try setting your own random seed to see the differences in data for each group.
+Try setting your own choice of random seed here and see how the summary statistics change.
 
 \hypertarget{manually-editing-data}{%
 \subsection{Manually editing data}\label{manually-editing-data}}
 
-If we take a sample of data and perhaps wish to add some additional variables to mimic the original data closer, this can easily be done in R. Let's take a sample for the dog data but lower our boundary to 14 and visualise
+If we take a sample of data and perhaps wish to add some additional variables to mimic the original data closer, this can easily be done in R. Let's take a sample for the dog data but lower our boundary to 14 and visualise.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{set.seed}\NormalTok{(}\DecValTok{2023}\NormalTok{)}
 \NormalTok{sample\_dog }\OtherTok{\textless{}{-}} \FunctionTok{rtruncnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{145}\NormalTok{, }\AttributeTok{a=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{14}\NormalTok{, }\AttributeTok{mean=}\FloatTok{7.5}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.66}\NormalTok{)}
 
-\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(sample\_dog),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{sample\_dog)) }\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{fill=}\StringTok{"white"}\NormalTok{,}\AttributeTok{bins=}\DecValTok{12}\NormalTok{) }\SpecialCharTok{+} 
-            \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{"Average draw time of dogs"}\NormalTok{,}\AttributeTok{x=}\StringTok{"Time (s)"}\NormalTok{)}
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(sample\_dog),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{sample\_dog)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{fill=}\StringTok{"white"}\NormalTok{,}\AttributeTok{bins=}\DecValTok{12}\NormalTok{) }\SpecialCharTok{+} 
+            \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{"Average draw time of dogs"}\NormalTok{,}\AttributeTok{x=}\StringTok{"Time(s)"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -364,7 +384,8 @@ When comparing this to the original data from the paper, we see that we do not o
 \NormalTok{sample\_dog }\OtherTok{\textless{}{-}} \FunctionTok{rtruncnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{143}\NormalTok{, }\AttributeTok{a=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{14}\NormalTok{, }\AttributeTok{mean=}\FloatTok{7.5}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.66}\NormalTok{)}
 \NormalTok{sample\_dog }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(sample\_dog, }\FunctionTok{c}\NormalTok{(}\FloatTok{14.3}\NormalTok{,}\FloatTok{15.2}\NormalTok{))}
 
-\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(sample\_dog),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{sample\_dog)) }\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{fill=}\StringTok{"white"}\NormalTok{,}\AttributeTok{bins=}\DecValTok{12}\NormalTok{) }\SpecialCharTok{+} 
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(sample\_dog),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{sample\_dog)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{fill=}\StringTok{"white"}\NormalTok{,}\AttributeTok{bins=}\DecValTok{12}\NormalTok{) }\SpecialCharTok{+} 
             \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{"Average draw time of dogs"}\NormalTok{,}\AttributeTok{x=}\StringTok{"Time (s)"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -394,6 +415,9 @@ We can also make this update in a slightly different way. If we take our origina
 \includegraphics{bookdown-demo_files/figure-latex/lowsample2-1.pdf}
 Here, we have used the \texttt{order} function to sort our data from the highest numerical observation to the lowest. The \texttt{decreasing=TRUE} argument sets this order from highest to lowest. If you wanted to replace the two lowest arguments, you can simply drop the \texttt{decreasing=TRUE} argument here. We then update the first two observations with our two outliers.
 
+\textbf{Exercise}
+Try replacing the two lowest values of your sampled data with the two identified outliers.
+
 \hypertarget{sampling-from-different-distributions}{%
 \subsection{Sampling from different distributions}\label{sampling-from-different-distributions}}
 
@@ -416,8 +440,11 @@ In this case, the data shown roughly takes the form of a Normal distribution. Th
 This list is not exhaustive, and R will contain libraries that will allow sampling from almost any known distribution.
 
 \textbf{Exercise}
-Try sampling some data from a different distribution. Obtain some summary statistics and plot a histogram of your sampled data.
-\#\#\# Performing a Mann-Whitney Test
+Carry out the steps we have worked through above, but this time using a different distribution of your choice. You can find information on what parameters need to be specified using the \texttt{?} notation before the function name (e.g.~\texttt{?rexp})
+
+\hypertarget{performing-a-mann-whitney-test}{%
+\subsection{Performing a Mann-Whitney Test}\label{performing-a-mann-whitney-test}}
+
 We can carry out a Mann-Whitney test in R as follows
 
 \begin{Shaded}
@@ -442,7 +469,7 @@ We can carry out a Mann-Whitney test in R as follows
 The output from this test gives us the rank sum \texttt{W} and a p-value which can be used for question creation
 
 \hypertarget{performing-a-z-test}{%
-\subsection{Performing a z-test}\label{performing-a-z-test}}
+\section{Performing a z-test}\label{performing-a-z-test}}
 
 We can perform a two-sample z test in R using the \texttt{z.test} function from the \texttt{BSDA} package. We can carry out this test as follows:
 
@@ -486,17 +513,31 @@ The estimated linear model is:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
-  What is the predicted waste for a store location whose average temperature is 18\(^{\circ}\)C?
-\item
-  The standard error for the slope coefficient is 0.92, which is associated with \(df=32\). Calculate a 95\% confidence interval for the slope parameter.
+  What is the predicted waste for a store location whose average temperature is 18\(^{\circ}\)C? \emph{Provide your answer to two decimal places.}
 \end{enumerate}
 
-\hypertarget{question-3}{%
-\subsection*{Question 3}\label{question-3}}
-\addcontentsline{toc}{subsection}{Question 3}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\textbf{Suppose you performed a hypothesis test to test if average temperature is a significant predictor of ice cream waste. Working at a significance level of 5\%, would you expect the p-value of the hypothesis test to be:}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  The standard error for the slope coefficient is 0.92, which is associated with \(df=32\). Calculate a 95\% confidence interval for the slope parameter. \emph{Provide your answer to two decimal places.}
+\end{enumerate}
+
+Lower:\_\_\_\_\_\_
+Upper:\_\_\_\_\_
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Suppose you performed a hypothesis test to test if average temperature is a significant predictor of ice cream waste. Working at a significance level of 5\%, would you expect the p-value of the hypothesis test to be:
+\end{enumerate}
 
 \begin{itemize}
 \item

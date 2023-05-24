@@ -145,18 +145,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="question-1.html#generating-a-random-sample-of-data" id="toc-generating-a-random-sample-of-data"><span class="toc-section-number">2.1.1</span> Generating a random sample of data</a></li>
 <li><a href="question-1.html#visualising-the-data" id="toc-visualising-the-data"><span class="toc-section-number">2.1.2</span> Visualising the data</a></li>
-<li><a href="question-1.html#setting-random-seeds-for-reproducability" id="toc-setting-random-seeds-for-reproducability"><span class="toc-section-number">2.1.3</span> Setting random seeds for reproducability</a></li>
+<li><a href="question-1.html#setting-random-seeds-for-reproducibility" id="toc-setting-random-seeds-for-reproducibility"><span class="toc-section-number">2.1.3</span> Setting random seeds for reproducibility</a></li>
 <li><a href="question-1.html#manually-editing-data" id="toc-manually-editing-data"><span class="toc-section-number">2.1.4</span> Manually editing data</a></li>
 <li><a href="question-1.html#sampling-from-different-distributions" id="toc-sampling-from-different-distributions"><span class="toc-section-number">2.1.5</span> Sampling from different distributions</a></li>
-<li><a href="question-1.html#performing-a-z-test" id="toc-performing-a-z-test"><span class="toc-section-number">2.1.6</span> Performing a z-test</a></li>
+<li><a href="question-1.html#performing-a-mann-whitney-test" id="toc-performing-a-mann-whitney-test"><span class="toc-section-number">2.1.6</span> Performing a Mann-Whitney Test</a></li>
 </ul></li>
+<li><a href="performing-a-z-test.html#performing-a-z-test" id="toc-performing-a-z-test"><span class="toc-section-number">2.2</span> Performing a z-test</a></li>
 </ul></li>
 <li><a href="linear-model-example.html#linear-model-example" id="toc-linear-model-example"><span class="toc-section-number">3</span> Linear model example</a>
 <ul>
-<li><a href="question.html#question" id="toc-question"><span class="toc-section-number">3.1</span> Question</a>
-<ul>
-<li><a href="question.html#question-3" id="toc-question-3">Question 3</a></li>
-</ul></li>
+<li><a href="question.html#question" id="toc-question"><span class="toc-section-number">3.1</span> Question</a></li>
 <li><a href="generating-data.html#generating-data" id="toc-generating-data"><span class="toc-section-number">3.2</span> Generating data</a>
 <ul>
 <li><a href="generating-data.html#explanatory-variable" id="toc-explanatory-variable"><span class="toc-section-number">3.2.1</span> Explanatory variable</a></li>
@@ -194,16 +192,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The estimated linear model is:</p>
 <p><span class="math display">\[\hat{waste} = 597 - 10.91 \times temperature.\]</span></p>
 <ol style="list-style-type: decimal">
-<li><p>What is the predicted waste for a store location whose average temperature is 18<span class="math inline">\(^{\circ}\)</span>C?</p></li>
-<li><p>The standard error for the slope coefficient is 0.92, which is associated with <span class="math inline">\(df=32\)</span>. Calculate a 95% confidence interval for the slope parameter.</p></li>
+<li>What is the predicted waste for a store location whose average temperature is 18<span class="math inline">\(^{\circ}\)</span>C? <em>Provide your answer to two decimal places.</em></li>
 </ol>
-<div id="question-3" class="section level3 unnumbered hasAnchor">
-<h3>Question 3<a href="question.html#question-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><input class='webex-solveme nospaces' size='6' data-answer='["400.62"]'/></p>
+<ol start="2" style="list-style-type: decimal">
+<li>The standard error for the slope coefficient is 0.92, which is associated with <span class="math inline">\(df=32\)</span>. Calculate a 95% confidence interval for the slope parameter. <em>Provide your answer to two decimal places.</em></li>
+</ol>
+<p>Lower:<input class='webex-solveme nospaces' size='6' data-answer='["-12.78"]'/>
+<br>
+Upper:<input class='webex-solveme nospaces' size='5' data-answer='["-9.04"]'/></p>
 <p><br></p>
-<p><strong>Suppose you performed a hypothesis test to test if average temperature is a significant predictor of ice cream waste. Working at a significance level of 5%, would you expect the p-value of the hypothesis test to be:</strong></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Suppose you performed a hypothesis test to test if average temperature is a significant predictor of ice cream waste. Working at a significance level of 5%, would you expect the p-value of the hypothesis test to be:</li>
+</ol>
 <p><select class='webex-select'><option value='blank'></option><option value=''>greater than 0.05</option><option value=''>Cannot tell with the information provided</option><option value='answer'>less than 0.05</option></select></p>
 <p><br></p>
-</div>
 </div>
             </section>
 
