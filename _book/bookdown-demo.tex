@@ -4,10 +4,10 @@
 %
 \documentclass[
 ]{book}
+\usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{amssymb,amsmath}
-\usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage{iftex}
+\ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -33,14 +33,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Using R to generate data for questions},
-  pdfauthor={Craig Alexander \& Eilidh Jack},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -81,7 +73,8 @@
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\usepackage{longtable,booktabs}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
 \makeatletter
@@ -90,7 +83,7 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
-\usepackage{graphicx,grffile}
+\usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -115,8 +108,19 @@
   \thm@postskip=\thm@preskip
 }
 \makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Using R to generate data for questions},
+  pdfauthor={Craig Alexander \& Eilidh Jack},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
 
 \title{Using R to generate data for questions}
 \author{Craig Alexander \& Eilidh Jack}
@@ -172,8 +176,8 @@ To randomly sample data from this distribution, we can use the \texttt{rtruncnor
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{sample_dog <-}\StringTok{ }\KeywordTok{rtruncnorm}\NormalTok{(}\DataTypeTok{n=}\DecValTok{145}\NormalTok{, }\DataTypeTok{a=}\DecValTok{0}\NormalTok{, }\DataTypeTok{b=}\DecValTok{16}\NormalTok{, }\DataTypeTok{mean=}\FloatTok{7.5}\NormalTok{, }\DataTypeTok{sd=}\FloatTok{2.66}\NormalTok{)}
-\NormalTok{sample_cat <-}\StringTok{ }\KeywordTok{rtruncnorm}\NormalTok{(}\DataTypeTok{n=}\DecValTok{121}\NormalTok{, }\DataTypeTok{a=}\DecValTok{0}\NormalTok{, }\DataTypeTok{b=}\DecValTok{14}\NormalTok{, }\DataTypeTok{mean=}\FloatTok{5.4}\NormalTok{, }\DataTypeTok{sd=}\FloatTok{2.31}\NormalTok{)}
+\NormalTok{sample\_dog }\OtherTok{\textless{}{-}} \FunctionTok{rtruncnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{145}\NormalTok{, }\AttributeTok{a=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{16}\NormalTok{, }\AttributeTok{mean=}\FloatTok{7.5}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.66}\NormalTok{)}
+\NormalTok{sample\_cat }\OtherTok{\textless{}{-}} \FunctionTok{rtruncnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{121}\NormalTok{, }\AttributeTok{a=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{14}\NormalTok{, }\AttributeTok{mean=}\FloatTok{5.4}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.31}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -197,7 +201,7 @@ Running the code above will produce a sample for both groups based on their rela
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(sample_dog)}
+\FunctionTok{summary}\NormalTok{(sample\_dog)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -208,7 +212,7 @@ Running the code above will produce a sample for both groups based on their rela
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(sample_cat)}
+\FunctionTok{summary}\NormalTok{(sample\_cat)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -217,6 +221,9 @@ Running the code above will produce a sample for both groups based on their rela
 ##  0.5993  4.5442  5.9961  5.8839  6.9648 12.4311
 \end{verbatim}
 
+\textbf{Exercise}
+Try changing the values of \texttt{a,\ b,\ mean} and \texttt{sd} in the examples above to see how this changes the summary statistics of the data
+
 \hypertarget{visualising-the-data}{%
 \subsection{Visualising the data}\label{visualising-the-data}}
 
@@ -224,12 +231,12 @@ We can also check the distribution of our sampled data for comparison by visuali
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{dog_hist <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(sample_dog),}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{sample_dog)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{color=}\StringTok{"black"}\NormalTok{,}\DataTypeTok{fill=}\StringTok{"white"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{            }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title=}\StringTok{"Average draw time of dogs"}\NormalTok{,}\DataTypeTok{x=}\StringTok{"Time (s)"}\NormalTok{)}
-\NormalTok{cat_hist <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(sample_cat),}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{sample_cat)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{color=}\StringTok{"black"}\NormalTok{,}\DataTypeTok{fill=}\StringTok{"white"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title=}\StringTok{"Average draw time of cats"}\NormalTok{,}\DataTypeTok{x=}\StringTok{"Time (s)"}\NormalTok{)}
+\NormalTok{dog\_hist }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(sample\_dog),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{sample\_dog)) }\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{fill=}\StringTok{"white"}\NormalTok{) }\SpecialCharTok{+} 
+            \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{"Average draw time of dogs"}\NormalTok{,}\AttributeTok{x=}\StringTok{"Time (s)"}\NormalTok{)}
+\NormalTok{cat\_hist }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(sample\_cat),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{sample\_cat)) }\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{fill=}\StringTok{"white"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{"Average draw time of cats"}\NormalTok{,}\AttributeTok{x=}\StringTok{"Time (s)"}\NormalTok{)}
 
-\KeywordTok{grid.arrange}\NormalTok{(dog_hist,cat_hist,}\DataTypeTok{ncol=}\DecValTok{2}\NormalTok{)}
+\FunctionTok{grid.arrange}\NormalTok{(dog\_hist,cat\_hist,}\AttributeTok{ncol=}\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -258,10 +265,13 @@ We can also alter the number of bins we use (\texttt{ggplot} will set a standard
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{dog_hist <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(sample_dog),}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{sample_dog)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{color=}\StringTok{"black"}\NormalTok{,}\DataTypeTok{fill=}\StringTok{"white"}\NormalTok{,}\DataTypeTok{bins=}\DecValTok{10}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title=}\StringTok{"Average draw time of dogs"}\NormalTok{,}\DataTypeTok{x=}\StringTok{"Time (s)"}\NormalTok{)}
+\NormalTok{dog\_hist }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(sample\_dog),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{sample\_dog)) }\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{fill=}\StringTok{"white"}\NormalTok{,}\AttributeTok{bins=}\DecValTok{10}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{"Average draw time of dogs"}\NormalTok{,}\AttributeTok{x=}\StringTok{"Time (s)"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\textbf{Exercise}
+Try modifying the histograms produced here. You can look to change the colour scheme, labels and the number of bins used.
 
 \hypertarget{setting-random-seeds-for-reproducability}{%
 \subsection{Setting random seeds for reproducability}\label{setting-random-seeds-for-reproducability}}
@@ -270,10 +280,10 @@ When we randomly sample data each time in R, we will obtain a different sample t
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{sample_dog1 <-}\StringTok{ }\KeywordTok{rtruncnorm}\NormalTok{(}\DataTypeTok{n=}\DecValTok{145}\NormalTok{, }\DataTypeTok{a=}\DecValTok{0}\NormalTok{, }\DataTypeTok{b=}\DecValTok{16}\NormalTok{, }\DataTypeTok{mean=}\FloatTok{7.5}\NormalTok{, }\DataTypeTok{sd=}\FloatTok{2.66}\NormalTok{)}
-\NormalTok{sample_dog2 <-}\StringTok{ }\KeywordTok{rtruncnorm}\NormalTok{(}\DataTypeTok{n=}\DecValTok{145}\NormalTok{, }\DataTypeTok{a=}\DecValTok{0}\NormalTok{, }\DataTypeTok{b=}\DecValTok{16}\NormalTok{, }\DataTypeTok{mean=}\FloatTok{7.5}\NormalTok{, }\DataTypeTok{sd=}\FloatTok{2.66}\NormalTok{)}
+\NormalTok{sample\_dog1 }\OtherTok{\textless{}{-}} \FunctionTok{rtruncnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{145}\NormalTok{, }\AttributeTok{a=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{16}\NormalTok{, }\AttributeTok{mean=}\FloatTok{7.5}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.66}\NormalTok{)}
+\NormalTok{sample\_dog2 }\OtherTok{\textless{}{-}} \FunctionTok{rtruncnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{145}\NormalTok{, }\AttributeTok{a=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{16}\NormalTok{, }\AttributeTok{mean=}\FloatTok{7.5}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.66}\NormalTok{)}
 
-\KeywordTok{summary}\NormalTok{(sample_dog1)}
+\FunctionTok{summary}\NormalTok{(sample\_dog1)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -284,7 +294,7 @@ When we randomly sample data each time in R, we will obtain a different sample t
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(sample_dog2)}
+\FunctionTok{summary}\NormalTok{(sample\_dog2)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -299,12 +309,12 @@ We can force R to use the same random number generation by using the \texttt{set
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{set.seed}\NormalTok{(}\DecValTok{2023}\NormalTok{)}
-\NormalTok{sample_dog1 <-}\StringTok{ }\KeywordTok{rtruncnorm}\NormalTok{(}\DataTypeTok{n=}\DecValTok{145}\NormalTok{, }\DataTypeTok{a=}\DecValTok{0}\NormalTok{, }\DataTypeTok{b=}\DecValTok{16}\NormalTok{, }\DataTypeTok{mean=}\FloatTok{7.5}\NormalTok{, }\DataTypeTok{sd=}\FloatTok{2.66}\NormalTok{)}
-\KeywordTok{set.seed}\NormalTok{(}\DecValTok{2023}\NormalTok{)}
-\NormalTok{sample_dog2 <-}\StringTok{ }\KeywordTok{rtruncnorm}\NormalTok{(}\DataTypeTok{n=}\DecValTok{145}\NormalTok{, }\DataTypeTok{a=}\DecValTok{0}\NormalTok{, }\DataTypeTok{b=}\DecValTok{16}\NormalTok{, }\DataTypeTok{mean=}\FloatTok{7.5}\NormalTok{, }\DataTypeTok{sd=}\FloatTok{2.66}\NormalTok{)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2023}\NormalTok{)}
+\NormalTok{sample\_dog1 }\OtherTok{\textless{}{-}} \FunctionTok{rtruncnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{145}\NormalTok{, }\AttributeTok{a=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{16}\NormalTok{, }\AttributeTok{mean=}\FloatTok{7.5}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.66}\NormalTok{)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2023}\NormalTok{)}
+\NormalTok{sample\_dog2 }\OtherTok{\textless{}{-}} \FunctionTok{rtruncnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{145}\NormalTok{, }\AttributeTok{a=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{16}\NormalTok{, }\AttributeTok{mean=}\FloatTok{7.5}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.66}\NormalTok{)}
 
-\KeywordTok{summary}\NormalTok{(sample_dog1)}
+\FunctionTok{summary}\NormalTok{(sample\_dog1)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -315,7 +325,7 @@ We can force R to use the same random number generation by using the \texttt{set
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(sample_dog2)}
+\FunctionTok{summary}\NormalTok{(sample\_dog2)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -326,6 +336,9 @@ We can force R to use the same random number generation by using the \texttt{set
 
 Here, we see we can produce the same data as the first sample by setting the seed prior to sampling.
 
+\textbf{Exercise}
+Try setting your own random seed to see the differences in data for each group.
+
 \hypertarget{manually-editing-data}{%
 \subsection{Manually editing data}\label{manually-editing-data}}
 
@@ -333,28 +346,53 @@ If we take a sample of data and perhaps wish to add some additional variables to
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{sample_dog <-}\StringTok{ }\KeywordTok{rtruncnorm}\NormalTok{(}\DataTypeTok{n=}\DecValTok{145}\NormalTok{, }\DataTypeTok{a=}\DecValTok{0}\NormalTok{, }\DataTypeTok{b=}\DecValTok{14}\NormalTok{, }\DataTypeTok{mean=}\FloatTok{7.5}\NormalTok{, }\DataTypeTok{sd=}\FloatTok{2.66}\NormalTok{)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2023}\NormalTok{)}
+\NormalTok{sample\_dog }\OtherTok{\textless{}{-}} \FunctionTok{rtruncnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{145}\NormalTok{, }\AttributeTok{a=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{14}\NormalTok{, }\AttributeTok{mean=}\FloatTok{7.5}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.66}\NormalTok{)}
 
-\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(sample_dog),}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{sample_dog)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{color=}\StringTok{"black"}\NormalTok{,}\DataTypeTok{fill=}\StringTok{"white"}\NormalTok{,}\DataTypeTok{bins=}\DecValTok{12}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{            }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title=}\StringTok{"Average draw time of dogs"}\NormalTok{,}\DataTypeTok{x=}\StringTok{"Time (s)"}\NormalTok{)}
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(sample\_dog),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{sample\_dog)) }\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{fill=}\StringTok{"white"}\NormalTok{,}\AttributeTok{bins=}\DecValTok{12}\NormalTok{) }\SpecialCharTok{+} 
+            \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{"Average draw time of dogs"}\NormalTok{,}\AttributeTok{x=}\StringTok{"Time (s)"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{bookdown-demo_files/figure-latex/lowsample-1.pdf}
 
-When comparing this to the original data from the paper, we see that we do not observe the two outliers at 14.3 seconds and 15.2 seconds. We can manually add these values as follows:
+When comparing this to the original data from the paper, we see that we do not observe the two outliers at 14.3 seconds and 15.2 seconds. In order to maintain the same sample size, we can reduce our samples here to be 143, and then manually add the two outliers. We can manually add these values as follows:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{sample_dog <-}\StringTok{ }\KeywordTok{c}\NormalTok{(sample_dog, }\KeywordTok{c}\NormalTok{(}\FloatTok{14.3}\NormalTok{,}\FloatTok{15.2}\NormalTok{))}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2023}\NormalTok{)}
+\NormalTok{sample\_dog }\OtherTok{\textless{}{-}} \FunctionTok{rtruncnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{143}\NormalTok{, }\AttributeTok{a=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{14}\NormalTok{, }\AttributeTok{mean=}\FloatTok{7.5}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.66}\NormalTok{)}
+\NormalTok{sample\_dog }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(sample\_dog, }\FunctionTok{c}\NormalTok{(}\FloatTok{14.3}\NormalTok{,}\FloatTok{15.2}\NormalTok{))}
 
-\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(sample_dog),}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{sample_dog)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{color=}\StringTok{"black"}\NormalTok{,}\DataTypeTok{fill=}\StringTok{"white"}\NormalTok{,}\DataTypeTok{bins=}\DecValTok{12}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{            }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title=}\StringTok{"Average draw time of dogs"}\NormalTok{,}\DataTypeTok{x=}\StringTok{"Time (s)"}\NormalTok{)}
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(sample\_dog),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{sample\_dog)) }\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{fill=}\StringTok{"white"}\NormalTok{,}\AttributeTok{bins=}\DecValTok{12}\NormalTok{) }\SpecialCharTok{+} 
+            \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{"Average draw time of dogs"}\NormalTok{,}\AttributeTok{x=}\StringTok{"Time (s)"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{bookdown-demo_files/figure-latex/modify-1.pdf}
+
 We now observe the two additional values in the histogram. For a vector of data, we can easily add new values using the \texttt{c()} command. This can be done by specifying our original data first, and then including our additional variables in a new \texttt{c()} object. If we only wish to add one value, we do not need to use \texttt{c()}.
+
+We can also make this update in a slightly different way. If we take our original sample of 145, we can directly replace two of the observations we have. We can replace the two highest values from our sampled data with the two outliers as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2023}\NormalTok{)}
+\NormalTok{sample\_dog }\OtherTok{\textless{}{-}} \FunctionTok{rtruncnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{145}\NormalTok{, }\AttributeTok{a=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{14}\NormalTok{, }\AttributeTok{mean=}\FloatTok{7.5}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.66}\NormalTok{)}
+
+\CommentTok{\# Order the data from higest to lowest}
+\NormalTok{sample\_dog }\OtherTok{\textless{}{-}}\NormalTok{ sample\_dog[}\FunctionTok{order}\NormalTok{(sample\_dog,}\AttributeTok{decreasing=}\ConstantTok{TRUE}\NormalTok{)]}
+
+\CommentTok{\# Replace the 2 highest values with our outliers}
+\NormalTok{sample\_dog[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{14.3}\NormalTok{,}\FloatTok{15.2}\NormalTok{)}
+
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(sample\_dog),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{sample\_dog)) }\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{fill=}\StringTok{"white"}\NormalTok{,}\AttributeTok{bins=}\DecValTok{12}\NormalTok{) }\SpecialCharTok{+} 
+            \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{"Average draw time of dogs"}\NormalTok{,}\AttributeTok{x=}\StringTok{"Time (s)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/lowsample2-1.pdf}
+Here, we have used the \texttt{order} function to sort our data from the highest numerical observation to the lowest. The \texttt{decreasing=TRUE} argument sets this order from highest to lowest. If you wanted to replace the two lowest arguments, you can simply drop the \texttt{decreasing=TRUE} argument here. We then update the first two observations with our two outliers.
 
 \hypertarget{sampling-from-different-distributions}{%
 \subsection{Sampling from different distributions}\label{sampling-from-different-distributions}}
@@ -377,18 +415,18 @@ In this case, the data shown roughly takes the form of a Normal distribution. Th
 
 This list is not exhaustive, and R will contain libraries that will allow sampling from almost any known distribution.
 
-\hypertarget{performing-a-mann-whitney-test}{%
-\subsection{Performing a Mann-Whitney Test}\label{performing-a-mann-whitney-test}}
-
+\textbf{Exercise}
+Try sampling some data from a different distribution. Obtain some summary statistics and plot a histogram of your sampled data.
+\#\#\# Performing a Mann-Whitney Test
 We can carry out a Mann-Whitney test in R as follows
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{sample_dog <-}\StringTok{ }\KeywordTok{rtruncnorm}\NormalTok{(}\DataTypeTok{n=}\DecValTok{145}\NormalTok{, }\DataTypeTok{a=}\DecValTok{0}\NormalTok{, }\DataTypeTok{b=}\DecValTok{16}\NormalTok{, }\DataTypeTok{mean=}\FloatTok{7.5}\NormalTok{, }\DataTypeTok{sd=}\FloatTok{2.66}\NormalTok{)}
-\NormalTok{sample_cat <-}\StringTok{ }\KeywordTok{rtruncnorm}\NormalTok{(}\DataTypeTok{n=}\DecValTok{121}\NormalTok{, }\DataTypeTok{a=}\DecValTok{0}\NormalTok{, }\DataTypeTok{b=}\DecValTok{14}\NormalTok{, }\DataTypeTok{mean=}\FloatTok{5.4}\NormalTok{, }\DataTypeTok{sd=}\FloatTok{2.31}\NormalTok{)}
+\NormalTok{sample\_dog }\OtherTok{\textless{}{-}} \FunctionTok{rtruncnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{145}\NormalTok{, }\AttributeTok{a=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{16}\NormalTok{, }\AttributeTok{mean=}\FloatTok{7.5}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.66}\NormalTok{)}
+\NormalTok{sample\_cat }\OtherTok{\textless{}{-}} \FunctionTok{rtruncnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{121}\NormalTok{, }\AttributeTok{a=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{14}\NormalTok{, }\AttributeTok{mean=}\FloatTok{5.4}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.31}\NormalTok{)}
 
-\NormalTok{mann_whitney <-}\StringTok{ }\KeywordTok{wilcox.test}\NormalTok{(sample_dog,sample_cat)}
-\NormalTok{mann_whitney}
+\NormalTok{mann\_whitney }\OtherTok{\textless{}{-}} \FunctionTok{wilcox.test}\NormalTok{(sample\_dog,sample\_cat)}
+\NormalTok{mann\_whitney}
 \end{Highlighting}
 \end{Shaded}
 
@@ -397,20 +435,20 @@ We can carry out a Mann-Whitney test in R as follows
 ##  Wilcoxon rank sum test with continuity correction
 ## 
 ## data:  sample_dog and sample_cat
-## W = 12823, p-value = 9.048e-11
+## W = 13000, p-value = 1.33e-11
 ## alternative hypothesis: true location shift is not equal to 0
 \end{verbatim}
 
 The output from this test gives us the rank sum \texttt{W} and a p-value which can be used for question creation
 
 \hypertarget{performing-a-z-test}{%
-\section{Performing a z-test}\label{performing-a-z-test}}
+\subsection{Performing a z-test}\label{performing-a-z-test}}
 
 We can perform a two-sample z test in R using the \texttt{z.test} function from the \texttt{BSDA} package. We can carry out this test as follows:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{z.test}\NormalTok{(sample_cat,sample_dog,}\DataTypeTok{sigma.x=}\FloatTok{2.307}\NormalTok{,}\DataTypeTok{sigma.y=}\FloatTok{2.655}\NormalTok{)}
+\FunctionTok{z.test}\NormalTok{(sample\_cat,sample\_dog,}\AttributeTok{sigma.x=}\FloatTok{2.307}\NormalTok{,}\AttributeTok{sigma.y=}\FloatTok{2.655}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -419,13 +457,13 @@ We can perform a two-sample z test in R using the \texttt{z.test} function from 
 ##  Two-sample z-Test
 ## 
 ## data:  sample_cat and sample_dog
-## z = -6.7694, p-value = 1.293e-11
+## z = -7.1488, p-value = 8.752e-13
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -2.656354 -1.463513
+##  -2.771824 -1.578983
 ## sample estimates:
 ## mean of x mean of y 
-##  5.308262  7.368196
+##  5.286729  7.462132
 \end{verbatim}
 
 Here, we specify the sample standard deviation for cats and dogs respectively. The output from the test gives us the z-statistic, p-value and 95\% confidence interval.
@@ -460,7 +498,31 @@ The estimated linear model is:
 
 \textbf{Suppose you performed a hypothesis test to test if average temperature is a significant predictor of ice cream waste. Working at a significance level of 5\%, would you expect the p-value of the hypothesis test to be:}
 
-Cannot tell with the information providedgreater than 0.05less than 0.05
+\begin{itemize}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\Alph{enumi})}
+  \tightlist
+  \item
+    greater than 0.05\\
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\Alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    Cannot tell with the information provided\\
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\Alph{enumi})}
+  \setcounter{enumi}{2}
+  \tightlist
+  \item
+    less than 0.05
+  \end{enumerate}
+\end{itemize}
 
 \hypertarget{generating-data}{%
 \section{Generating data}\label{generating-data}}
@@ -484,7 +546,7 @@ Let's start by generating our x-variable, \(temperature\). We will use a Normal 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{temp<-}\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n=}\DecValTok{34}\NormalTok{, }\DataTypeTok{mean=}\DecValTok{12}\NormalTok{, }\DataTypeTok{sd=}\DecValTok{4}\NormalTok{)}
+\NormalTok{temp}\OtherTok{\textless{}{-}}\FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{34}\NormalTok{, }\AttributeTok{mean=}\DecValTok{12}\NormalTok{, }\AttributeTok{sd=}\DecValTok{4}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -504,9 +566,9 @@ Let's take a look at our simulated data to check that is looks sensible. To do t
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(temp),}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{temp)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{color=}\StringTok{"black"}\NormalTok{,}\DataTypeTok{fill=}\StringTok{"white"}\NormalTok{, }\DataTypeTok{bins=}\DecValTok{10}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{            }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{"Average temperature"}\NormalTok{)}
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(temp),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{temp)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{fill=}\StringTok{"white"}\NormalTok{, }\AttributeTok{bins=}\DecValTok{10}\NormalTok{) }\SpecialCharTok{+} 
+            \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=}\StringTok{"Average temperature"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -526,7 +588,7 @@ We can now generate the response variable, \(y\) as follows:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{waste<-}\DecValTok{591} \OperatorTok{-}\StringTok{ }\FloatTok{10.65}\OperatorTok{*}\NormalTok{temp}
+\NormalTok{waste}\OtherTok{\textless{}{-}}\DecValTok{591} \SpecialCharTok{{-}} \FloatTok{10.65}\SpecialCharTok{*}\NormalTok{temp}
 \end{Highlighting}
 \end{Shaded}
 
@@ -546,11 +608,11 @@ Let's now produce a scatterplot of our data using \texttt{ggplot2}. We will use 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{data<-}\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{waste=}\NormalTok{waste, }\DataTypeTok{temp=}\NormalTok{temp)}
+\NormalTok{data}\OtherTok{\textless{}{-}}\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{waste=}\NormalTok{waste, }\AttributeTok{temp=}\NormalTok{temp)}
 
-\KeywordTok{ggplot}\NormalTok{(data, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{temp, }\DataTypeTok{y=}\NormalTok{waste)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{"Average temperature"}\NormalTok{, }\DataTypeTok{y=}\StringTok{"Ice cream waste"}\NormalTok{)}
+\FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{temp, }\AttributeTok{y=}\NormalTok{waste)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=}\StringTok{"Average temperature"}\NormalTok{, }\AttributeTok{y=}\StringTok{"Ice cream waste"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -574,7 +636,7 @@ Now, you may have noticed that our scatterplot has identified an issue with the 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{waste<-}\DecValTok{591} \OperatorTok{-}\StringTok{ }\FloatTok{10.65}\OperatorTok{*}\NormalTok{temp }\OperatorTok{+}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n=}\DecValTok{34}\NormalTok{, }\DataTypeTok{mean=}\DecValTok{0}\NormalTok{, }\DataTypeTok{sd=}\DecValTok{20}\NormalTok{)}
+\NormalTok{waste}\OtherTok{\textless{}{-}}\DecValTok{591} \SpecialCharTok{{-}} \FloatTok{10.65}\SpecialCharTok{*}\NormalTok{temp }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{34}\NormalTok{, }\AttributeTok{mean=}\DecValTok{0}\NormalTok{, }\AttributeTok{sd=}\DecValTok{20}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -584,11 +646,11 @@ Let's take a look at the scatterplot with our newly generated response.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{data<-}\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{waste=}\NormalTok{waste, }\DataTypeTok{temp=}\NormalTok{temp)}
+\NormalTok{data}\OtherTok{\textless{}{-}}\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{waste=}\NormalTok{waste, }\AttributeTok{temp=}\NormalTok{temp)}
 
-\KeywordTok{ggplot}\NormalTok{(data, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{temp, }\DataTypeTok{y=}\NormalTok{waste)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{"Average temperature"}\NormalTok{, }\DataTypeTok{y=}\StringTok{"Ice cream waste"}\NormalTok{)}
+\FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{temp, }\AttributeTok{y=}\NormalTok{waste)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=}\StringTok{"Average temperature"}\NormalTok{, }\AttributeTok{y=}\StringTok{"Ice cream waste"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -607,8 +669,8 @@ Now that we have simulated values for \(temperature\) and \(waste\) we can now f
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{model<-}\KeywordTok{lm}\NormalTok{(waste}\OperatorTok{~}\NormalTok{temp)}
-\KeywordTok{summary}\NormalTok{(model)}
+\NormalTok{model}\OtherTok{\textless{}{-}}\FunctionTok{lm}\NormalTok{(waste}\SpecialCharTok{\textasciitilde{}}\NormalTok{temp)}
+\FunctionTok{summary}\NormalTok{(model)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -642,15 +704,15 @@ We can now add our fitted model and 95\% confidence interval to the scatterplot 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(data, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{temp, }\DataTypeTok{y=}\NormalTok{waste)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{"Average temperature"}\NormalTok{, }\DataTypeTok{y=}\StringTok{"Ice cream waste"}\NormalTok{)}\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{, }\DataTypeTok{se=}\OtherTok{TRUE}\NormalTok{)}
+\FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{temp, }\AttributeTok{y=}\NormalTok{waste)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=}\StringTok{"Average temperature"}\NormalTok{, }\AttributeTok{y=}\StringTok{"Ice cream waste"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{, }\AttributeTok{se=}\ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula = 'y ~ x'
+## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
 \includegraphics{bookdown-demo_files/figure-latex/xyscatter3-1.pdf}
@@ -672,7 +734,7 @@ We can use the \texttt{autoplot()} function in the \texttt{ggfortify} library to
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{autoplot}\NormalTok{(model)}
+\FunctionTok{autoplot}\NormalTok{(model)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -685,13 +747,13 @@ You can also calculate quantities such as \(S_{xx}, S_{yy}\) and \(S_{xy}\) to b
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{S.xx <-}\StringTok{ }\KeywordTok{sum}\NormalTok{((temp }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(temp))}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
-\NormalTok{S.yy <-}\StringTok{ }\KeywordTok{sum}\NormalTok{((waste }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(waste))}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
-\NormalTok{S.xy <-}\StringTok{ }\KeywordTok{sum}\NormalTok{((temp }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(temp)) }\OperatorTok{*}\StringTok{ }\NormalTok{(waste }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(waste)))}
+\NormalTok{S.xx }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((temp }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(temp))}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{S.yy }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((waste }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(waste))}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{S.xy }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((temp }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(temp)) }\SpecialCharTok{*}\NormalTok{ (waste }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(waste)))}
 
-\NormalTok{r <-}\StringTok{ }\NormalTok{S.xy}\OperatorTok{/}\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(S.xx}\OperatorTok{*}\NormalTok{S.yy))}
-\NormalTok{beta <-}\StringTok{ }\NormalTok{S.xy}\OperatorTok{/}\NormalTok{S.xx}
-\NormalTok{alpha <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(waste) }\OperatorTok{-}\StringTok{ }\NormalTok{beta}\OperatorTok{*}\KeywordTok{mean}\NormalTok{(temp)}
+\NormalTok{r }\OtherTok{\textless{}{-}}\NormalTok{ S.xy}\SpecialCharTok{/}\NormalTok{(}\FunctionTok{sqrt}\NormalTok{(S.xx}\SpecialCharTok{*}\NormalTok{S.yy))}
+\NormalTok{beta }\OtherTok{\textless{}{-}}\NormalTok{ S.xy}\SpecialCharTok{/}\NormalTok{S.xx}
+\NormalTok{alpha }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(waste) }\SpecialCharTok{{-}}\NormalTok{ beta}\SpecialCharTok{*}\FunctionTok{mean}\NormalTok{(temp)}
 
 \NormalTok{r}
 \end{Highlighting}

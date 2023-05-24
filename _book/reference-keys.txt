@@ -7,7 +7,6 @@ visualising-the-data
 setting-random-seeds-for-reproducability
 manually-editing-data
 sampling-from-different-distributions
-performing-a-mann-whitney-test
 performing-a-z-test
 linear-model-example
 question

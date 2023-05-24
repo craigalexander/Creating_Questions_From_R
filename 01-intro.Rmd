@@ -37,6 +37,9 @@ summary(sample_cat)
 ```
 
 
+**Exercise**
+Try changing the values of `a, b, mean` and `sd` in the examples above to see how this changes the summary statistics of the data
+
 ### Visualising the data
 We can also check the distribution of our sampled data for comparison by visualising it using a histogram. The `ggplot2` library found in the `tidyverse` library provides several functions for data visualisation and has become more popular than base R graphics. We will use the `geom_histogram()` function from the library in this example as follows:
 
@@ -63,6 +66,9 @@ dog_hist <- ggplot(data.frame(sample_dog),aes(x=sample_dog)) + geom_histogram(co
   labs(title="Average draw time of dogs",x="Time (s)")
 ```
 
+
+**Exercise**
+Try modifying the histograms produced here. You can look to change the colour scheme, labels and the number of bins used.
 
 ### Setting random seeds for reproducability 
 
@@ -92,25 +98,50 @@ summary(sample_dog2)
 
 Here, we see we can produce the same data as the first sample by setting the seed prior to sampling.
 
+**Exercise**
+Try setting your own random seed to see the differences in data for each group.
+
 ### Manually editing data
 If we take a sample of data and perhaps wish to add some additional variables to mimic the original data closer, this can easily be done in R. Let's take a sample for the dog data but lower our boundary to 14 and visualise
 
 ```{r, lowsample}
+set.seed(2023)
 sample_dog <- rtruncnorm(n=145, a=0, b=14, mean=7.5, sd=2.66)
 
 ggplot(data.frame(sample_dog),aes(x=sample_dog)) + geom_histogram(color="black",fill="white",bins=12) + 
             labs(title="Average draw time of dogs",x="Time (s)")
 ```
 
-When comparing this to the original data from the paper, we see that we do not observe the two outliers at 14.3 seconds and 15.2 seconds. We can manually add these values as follows:
+When comparing this to the original data from the paper, we see that we do not observe the two outliers at 14.3 seconds and 15.2 seconds. In order to maintain the same sample size, we can reduce our samples here to be 143, and then manually add the two outliers. We can manually add these values as follows:
 
 ```{r modify}
+set.seed(2023)
+sample_dog <- rtruncnorm(n=143, a=0, b=14, mean=7.5, sd=2.66)
 sample_dog <- c(sample_dog, c(14.3,15.2))
 
 ggplot(data.frame(sample_dog),aes(x=sample_dog)) + geom_histogram(color="black",fill="white",bins=12) + 
             labs(title="Average draw time of dogs",x="Time (s)")
 ```
+
 We now observe the two additional values in the histogram. For a vector of data, we can easily add new values using the `c()` command. This can be done by specifying our original data first, and then including our additional variables in a new `c()` object. If we only wish to add one value, we do not need to use `c()`.
+
+We can also make this update in a slightly different way. If we take our original sample of 145, we can directly replace two of the observations we have. We can replace the two highest values from our sampled data with the two outliers as follows:
+
+```{r, lowsample2}
+set.seed(2023)
+sample_dog <- rtruncnorm(n=145, a=0, b=14, mean=7.5, sd=2.66)
+
+# Order the data from higest to lowest
+sample_dog <- sample_dog[order(sample_dog,decreasing=TRUE)]
+
+# Replace the 2 highest values with our outliers
+sample_dog[1:2] <- c(14.3,15.2)
+
+ggplot(data.frame(sample_dog),aes(x=sample_dog)) + geom_histogram(color="black",fill="white",bins=12) + 
+            labs(title="Average draw time of dogs",x="Time (s)")
+```
+Here, we have used the `order` function to sort our data from the highest numerical observation to the lowest. The `decreasing=TRUE` argument sets this order from highest to lowest. If you wanted to replace the two lowest arguments, you can simply drop the `decreasing=TRUE` argument here. We then update the first two observations with our two outliers. 
+
 
 ### Sampling from different distributions
 In this case, the data shown roughly takes the form of a Normal distribution. There are several cases where this may not be an appropriate distribution. R contains a full range of different distributions we can sample from. Some common choices are shown below:
@@ -123,6 +154,9 @@ In this case, the data shown roughly takes the form of a Normal distribution. Th
 
 This list is not exhaustive, and R will contain libraries that will allow sampling from almost any known distribution.
 
+
+**Exercise**
+Try sampling some data from a different distribution. Obtain some summary statistics and plot a histogram of your sampled data. 
 ### Performing a Mann-Whitney Test
 We can carry out a Mann-Whitney test in R as follows
 
@@ -135,7 +169,7 @@ mann_whitney
 ```
 The output from this test gives us the rank sum `W` and a p-value which can be used for question creation
 
-## Performing a z-test
+### Performing a z-test
 We can perform a two-sample z test in R using the `z.test` function from the `BSDA` package. We can carry out this test as follows:
 ```{r, ztest}
 z.test(sample_cat,sample_dog,sigma.x=2.307,sigma.y=2.655)
