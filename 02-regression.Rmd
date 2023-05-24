@@ -10,11 +10,15 @@ The estimated linear model is:
 
 $$\hat{waste} = 597 - 10.91 \times temperature.$$
 
-1. What is the predicted waste for a store location whose average temperature is 18$^{\circ}$C?
+1. What is the predicted waste for a store location whose average temperature is 18$^{\circ}$C? *Provide your answer to two decimal places.*
 
-2. The standard error for the slope coefficient is 0.92, which is associated with $df=32$. Calculate a 95% confidence interval for the slope parameter.
+`r fitb(400.62)`
 
-### Question 3 {-}
+2. The standard error for the slope coefficient is 0.92, which is associated with $df=32$. Calculate a 95% confidence interval for the slope parameter. *Provide your answer to two decimal places.*
+
+Lower:`r fitb(-12.78)`
+<br>
+Upper:`r fitb(-9.04)`
 
 ```{r, MCQ1, echo=FALSE}
 q_ex1 <- sample(c(
@@ -26,7 +30,7 @@ q_ex1 <- sample(c(
 <br>
 
 
-**Suppose you performed a hypothesis test to test if average temperature is a significant predictor of ice cream waste. Working at a significance level of 5%, would you expect the p-value of the hypothesis test to be:**
+3. Suppose you performed a hypothesis test to test if average temperature is a significant predictor of ice cream waste. Working at a significance level of 5%, would you expect the p-value of the hypothesis test to be:
 
 `r mcq(q_ex1)`
 

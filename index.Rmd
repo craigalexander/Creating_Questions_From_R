@@ -29,10 +29,21 @@ In this session, we will take a look at how we can use R to generate data to cre
 
 
 ## Libraries
-Throughout this tutorial, we will use some libraries within R. If you would prefer to work through the examples on R, you will need to install the following libraries:
+Throughout this tutorial, we will use some libraries within R. If you are logged into a University computer, please load the following libraries:
+
+```{r, libs}
+library(tidyverse)
+library(truncnorm)
+library(gridExtra)
+library(BSDA)
+library(ggfortify)
+```
+
+If you would prefer to work through the examples on your own device, you will need to install the following libraries:
 
 - `tidyverse`
 - `truncnorm`
 - `gridExtra`
 - `BSDA`
+- `ggfortify`
 
