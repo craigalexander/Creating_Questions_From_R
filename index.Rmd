@@ -25,7 +25,7 @@ library(ggfortify)
 
 
 # Overview
-In this session, we will take a look at how we can use R to generate data to create questions. The first example will work through question 1 of Paper 1 from the 2021 exam. You can access the [paper](https://www.sqa.org.uk/sqa/files_ccc/NAH_Statistics_Paper1_2021.pdf) and [solutions](Advanced Higher Statistic marking instructions paper 1) by clicking on the links. The second example will introduce how to generate data for a simple linear model.
+In this session, we will take a look at how we can use R to generate data to create questions. The first example will work through question 1 of Paper 1 from the 2021 exam. You can access the [paper](https://www.sqa.org.uk/sqa/files_ccc/NAH_Statistics_Paper1_2021.pdf) and [solutions](https://www.sqa.org.uk/sqa/files_ccc/mi_NAH_Statistics-Paper-1_mi_2021.pdf) by clicking on the links. The second example will introduce how to generate data for a simple linear model.
 
 
 ## Libraries
