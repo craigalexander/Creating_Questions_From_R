@@ -4,7 +4,7 @@ paper-1-example
 question-1
 generating-a-random-sample-of-data
 visualising-the-data
-setting-random-seeds-for-reproducability
+setting-random-seeds-for-reproducibility
 manually-editing-data
 sampling-from-different-distributions
 performing-a-mann-whitney-test

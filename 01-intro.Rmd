@@ -1,9 +1,9 @@
 # 2021 Paper 1 Example
 
 ## Question 1
-In this example, we will take a look at question 1 from Paper 1 in 2021. This question is a report style question based on Google AI data of times taken to draw a cat or a dog. The example contains a stem and leaf diagram with the combined data and some summary statistics for both sets of drawings. Following this, a Mann-Whitney Test is carried out to test whether both samples have different average drawing times. 
+In this example, we will take a look at question 1 from [Paper 1](https://www.sqa.org.uk/sqa/files_ccc/NAH_Statistics_Paper1_2021.pdf) in 2021. This question is a report style question based on Google AI data of times taken to draw a cat or a dog. The example contains a stem and leaf diagram with the combined data and some summary statistics for both sets of drawings. Following this, a Mann-Whitney Test is carried out to test whether both samples have different average drawing times. 
 
-We will now look at how we can draw a sample of the data from the question, by randomly sampling data for both groups using properties from their summary statistics
+We will now look at how we can simulate a sample of the data from the question, by randomly sampling data for both groups using properties from their summary statistics
 
 ### Generating a random sample of data
 We can generate a random sample of data for both the categories using the summary statistics provided. As we can see from the stem and leaf diagram, the data have a lower bound, where we cannot observe any data below zero, as the data recorded are based on time elapsed. 
@@ -17,8 +17,8 @@ set.seed(1234)
 ```
 
 ```{r, datasample}
-sample_dog <- rtruncnorm(n=145, a=0, b=16, mean=7.5, sd=2.66)
 sample_cat <- rtruncnorm(n=121, a=0, b=14, mean=5.4, sd=2.31)
+sample_dog <- rtruncnorm(n=145, a=0, b=16, mean=7.5, sd=2.66)
 ```
 
 The parameters required are defined as follows:
@@ -32,21 +32,24 @@ The parameters required are defined as follows:
 Running the code above will produce a sample for both groups based on their relative summary statistics. We can check the summary statistics of our data using `summary()`
 
 ```{r, summary}
-summary(sample_dog)
 summary(sample_cat)
+summary(sample_dog)
 ```
 
+We can now compare these summary statistics to those of the real data provided in the paper and notice that our simulated data produces fairly similar summary statistics. 
 
 ### Visualising the data
 We can also check the distribution of our sampled data for comparison by visualising it using a histogram. The `ggplot2` library found in the `tidyverse` library provides several functions for data visualisation and has become more popular than base R graphics. We will use the `geom_histogram()` function from the library in this example as follows:
 
 ```{r, histograms}
-dog_hist <- ggplot(data.frame(sample_dog),aes(x=sample_dog)) + geom_histogram(color="black",fill="white") + 
+dog_hist <- ggplot(data.frame(sample_dog),aes(x=sample_dog))+
+  geom_histogram(color="black",fill="white") + 
             labs(title="Average draw time of dogs",x="Time (s)")
-cat_hist <- ggplot(data.frame(sample_cat),aes(x=sample_cat)) + geom_histogram(color="black",fill="white") + 
+cat_hist <- ggplot(data.frame(sample_cat),aes(x=sample_cat))+
+  geom_histogram(color="black",fill="white") + 
   labs(title="Average draw time of cats",x="Time (s)")
 
-grid.arrange(dog_hist,cat_hist,ncol=2)
+grid.arrange(cat_hist, dog_hist,ncol=2)
 ```
 
 To create these histograms, the code above works in the following fashion:
@@ -59,12 +62,13 @@ To create these histograms, the code above works in the following fashion:
 We can also alter the number of bins we use (`ggplot` will set a standard number of bins by default) using the `bins` argument. Let's alter the number of bins for the dog data to be 10
 
 ```{r hist_bins}
-dog_hist <- ggplot(data.frame(sample_dog),aes(x=sample_dog)) + geom_histogram(color="black",fill="white",bins=10) + 
+dog_hist <- ggplot(data.frame(sample_dog),aes(x=sample_dog))+
+  geom_histogram(color="black",fill="white",bins=10) + 
   labs(title="Average draw time of dogs",x="Time (s)")
 ```
 
 
-### Setting random seeds for reproducability 
+### Setting random seeds for reproducibility 
 
 When we randomly sample data each time in R, we will obtain a different sample than before. Let's run our previous code twice to see if there is any differences:
 
@@ -93,13 +97,14 @@ summary(sample_dog2)
 Here, we see we can produce the same data as the first sample by setting the seed prior to sampling.
 
 ### Manually editing data
-If we take a sample of data and perhaps wish to add some additional variables to mimic the original data closer, this can easily be done in R. Let's take a sample for the dog data but lower our boundary to 14 and visualise
+If we take a sample of data and perhaps wish to add some additional variables to mimic the original data closer, this can easily be done in R. Let's take a sample for the dog data but lower our boundary to 14 and visualise.
 
 ```{r, lowsample}
 sample_dog <- rtruncnorm(n=145, a=0, b=14, mean=7.5, sd=2.66)
 
-ggplot(data.frame(sample_dog),aes(x=sample_dog)) + geom_histogram(color="black",fill="white",bins=12) + 
-            labs(title="Average draw time of dogs",x="Time (s)")
+ggplot(data.frame(sample_dog),aes(x=sample_dog)) +
+  geom_histogram(color="black",fill="white",bins=12) + 
+            labs(title="Average draw time of dogs",x="Time(s)")
 ```
 
 When comparing this to the original data from the paper, we see that we do not observe the two outliers at 14.3 seconds and 15.2 seconds. We can manually add these values as follows:
@@ -107,7 +112,8 @@ When comparing this to the original data from the paper, we see that we do not o
 ```{r modify}
 sample_dog <- c(sample_dog, c(14.3,15.2))
 
-ggplot(data.frame(sample_dog),aes(x=sample_dog)) + geom_histogram(color="black",fill="white",bins=12) + 
+ggplot(data.frame(sample_dog),aes(x=sample_dog)) +
+  geom_histogram(color="black",fill="white",bins=12) + 
             labs(title="Average draw time of dogs",x="Time (s)")
 ```
 We now observe the two additional values in the histogram. For a vector of data, we can easily add new values using the `c()` command. This can be done by specifying our original data first, and then including our additional variables in a new `c()` object. If we only wish to add one value, we do not need to use `c()`.
