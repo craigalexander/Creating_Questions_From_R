@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 3 Linear model example | Using R to generate data for questions</title>
+<meta name="author" content="Craig Alexander &amp; Eilidh Jack">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta property="og:title" content="Chapter 3 Linear model example | Using R to generate data for questions">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 3 Linear model example | Using R to generate data for questions">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<meta name="description" content="In this section we will introduce how to generate data for a linear model example using the linear model equation. This example is based on the following question.  3.1 Question A global ice cream...">
+<meta property="og:description" content="In this section we will introduce how to generate data for a linear model example using the linear model equation. This example is based on the following question.  3.1 Question A global ice cream...">
+<meta name="twitter:description" content="In this section we will introduce how to generate data for a linear model example using the linear model equation. This example is based on the following question.  3.1 Question A global ice cream...">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Using R to generate data for questions</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Overview</a></li>
+<li><a class="" href="paper-1-example.html"><span class="header-section-number">2</span> 2021 Paper 1 Example</a></li>
+<li><a class="active" href="linear-model-example.html"><span class="header-section-number">3</span> Linear model example</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="linear-model-example" class="section level1" number="3">
+<h1>
+<span class="header-section-number">3</span> Linear model example<a class="anchor" aria-label="anchor" href="#linear-model-example"><i class="fas fa-link"></i></a>
+</h1>
+<p>In this section we will introduce how to generate data for a linear model example using the linear model equation.</p>
+<p>This example is based on the following question.</p>
+<div id="question" class="section level2" number="3.1">
+<h2>
+<span class="header-section-number">3.1</span> Question<a class="anchor" aria-label="anchor" href="#question"><i class="fas fa-link"></i></a>
+</h2>
+<p>A global ice cream company is interested in using linear regression to predict its ice cream waste (kg) based on the average temperatures of its store locations (<span class="math inline">\(^{\circ}\)</span>C).</p>
+<p>The estimated linear model is:</p>
+<p><span class="math display">\[\hat{waste} = 597 - 10.91 \times temperature.\]</span></p>
+<ol style="list-style-type: decimal">
+<li>What is the predicted waste for a store location whose average temperature is 18<span class="math inline">\(^{\circ}\)</span>C? <em>Provide your answer to two decimal places.</em>
+</li>
+</ol>
+<p><input class="webex-solveme nospaces" size="6" data-answer='["400.62"]'></p>
+<ol start="2" style="list-style-type: decimal">
+<li>The standard error for the slope coefficient is 0.92, which is associated with <span class="math inline">\(df=32\)</span>. Calculate a 95% confidence interval for the slope parameter. <em>Provide your answer to two decimal places.</em>
+</li>
+</ol>
+<p>Lower:<input class="webex-solveme nospaces" size="6" data-answer='["-12.78"]'><br>
+Upper:<input class="webex-solveme nospaces" size="5" data-answer='["-9.04"]'></p>
+<p><br></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Suppose you performed a hypothesis test to test if average temperature is a significant predictor of ice cream waste. Working at a significance level of 5%, would you expect the p-value of the hypothesis test to be:</li>
+</ol>
+<p><select class="webex-select"><option value="blank"></option>
+<option value="">greater than 0.05</option>
+<option value="">Cannot tell with the information provided</option>
+<option value="answer">less than 0.05</option></select></p>
+<p><br></p>
+</div>
+<div id="generating-data" class="section level2" number="3.2">
+<h2>
+<span class="header-section-number">3.2</span> Generating data<a class="anchor" aria-label="anchor" href="#generating-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>In order to fit this linear model we need to generate two variables:</p>
+<ul>
+<li>Response variable (<span class="math inline">\(y\)</span>): <span class="math inline">\(waste\)</span> and</li>
+<li>Explanatory variable (<span class="math inline">\(x\)</span>): <span class="math inline">\(temperature\)</span>.</li>
+</ul>
+<p>Crucially, these variables need to be associated with each other as shown in the linear model equation.</p>
+<div id="explanatory-variable" class="section level3" number="3.2.1">
+<h3>
+<span class="header-section-number">3.2.1</span> Explanatory variable<a class="anchor" aria-label="anchor" href="#explanatory-variable"><i class="fas fa-link"></i></a>
+</h3>
+<p>Let’s start by generating our x-variable, <span class="math inline">\(temperature\)</span>. We will use a Normal distribution to do this since our variable is continuous.</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">temp</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">34</span>, mean<span class="op">=</span><span class="fl">12</span>, sd<span class="op">=</span><span class="fl">4</span><span class="op">)</span></code></pre></div>
+<p>The parameters required are defined as follows:</p>
+<ul>
+<li>
+<code>n</code> - the number of samples we wish to draw. In our question <span class="math inline">\(df=32\)</span>, so <span class="math inline">\(n=34\)</span> (since for a simple linear model <span class="math inline">\(df=n-2\)</span>).</li>
+<li>
+<code>mean</code> - the mean temperature which our data will be centered on. Pick something sensible here, we have gone for <span class="math inline">\(12^{\circ}\)</span>C.</li>
+<li>
+<code>sd</code> - the standard deviation for <span class="math inline">\(temperature\)</span>. Again go for something that seems sensible (high enough to show some variability, but not too high that the values at the extreme are no longer sensible). This can take a bit of trial and error.</li>
+</ul>
+<p>Let’s take a look at our simulated data to check that is looks sensible. To do this we will the <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> function that we used in our previous example.</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">temp</span><span class="op">)</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">temp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"black"</span>,fill<span class="op">=</span><span class="st">"white"</span>, bins<span class="op">=</span><span class="fl">10</span><span class="op">)</span> <span class="op">+</span> 
+            <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Average temperature"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/xhist-1.png" width="672"></div>
+<p><strong>Exercise</strong>
+Change the values of the <code>mean</code> and <code>sd</code> in the code above and plot a histogram of the newly simulated <span class="math inline">\(x\)</span> value to see how the data changes.</p>
+</div>
+<div id="using-a-linear-model-to-generate-the-response" class="section level3" number="3.2.2">
+<h3>
+<span class="header-section-number">3.2.2</span> Using a linear model to generate the response<a class="anchor" aria-label="anchor" href="#using-a-linear-model-to-generate-the-response"><i class="fas fa-link"></i></a>
+</h3>
+<p>In order to generate the response variable <span class="math inline">\(y\)</span> we need to choose a sensible linear model which will relate the explantory variable <span class="math inline">\(x\)</span> to the response variable <span class="math inline">\(y\)</span>.</p>
+<p>To specify a simple linear model we need to choose two values, the intercept, <span class="math inline">\(\alpha\)</span>, and the slope, <span class="math inline">\(\beta\)</span>. In this example we want to estimate ice cream waste from average temperature, we are therefore going to assume there is a <em>negative</em> relationship between these variables, i.e. the warmer it is, the more ice cream you will sell! Therefore, the slope parameter (<span class="math inline">\(\beta\)</span>) should be negative. The size of this will depend on what you think is a sensible interpretation. Here let’s go for -10.65, so for every unit increase in average temperature, ice cream waste decreases by 10.65kg. For the intercept, again think about a sensible value based on the context. Remember this value is where the regression line will cut the y-axis. Let’s choose 591. The choice for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> will be subjective, and might take some trial and error before deciding on your final values. Just make sure that the interpretation of the final model is sensible.</p>
+<p>We can now generate the response variable, <span class="math inline">\(y\)</span> as follows:</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">waste</span><span class="op">&lt;-</span><span class="fl">591</span> <span class="op">-</span> <span class="fl">10.65</span><span class="op">*</span><span class="va">temp</span></code></pre></div>
+<p>where</p>
+<ul>
+<li>591 is our chosen value for <span class="math inline">\(\alpha\)</span>,</li>
+<li>-10.65 is our chosen value for <span class="math inline">\(\beta\)</span>,</li>
+<li>
+<code>temp</code> is the x-variable we have already simulated.</li>
+</ul>
+<p>Let’s now produce a scatterplot of our data using <code>ggplot2</code>. We will use a similar structure to the plots we have produced previously but we will use the <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> function to produce a scatterplot as follows:</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">data</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>waste<span class="op">=</span><span class="va">waste</span>, temp<span class="op">=</span><span class="va">temp</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">temp</span>, y<span class="op">=</span><span class="va">waste</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Average temperature"</span>, y<span class="op">=</span><span class="st">"Ice cream waste"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/xyscatter-1.png" width="672"></div>
+<p>To create this scatterplot we first had to store our two variables in a <em>dataframe</em> which we called <code>data</code>. Here we are creating a dataframe with two columns which we have given the same names as the two data vectors we have already created, namely <code>waste</code> and <code>temp</code>. In these columns we are simply storing the data vectors we have simulated above. We then create the scatterplot which works as follows:</p>
+<ul>
+<li>First we specify our data using <code>ggplot(data)</code>.</li>
+<li>We then specify the variables we want to plot using the <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> argument, where <code>x=temp</code> and <code>y=waste</code>.</li>
+<li>We then generate the scatterplot using <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>. Here we have used the default values so we don’t need to specify anything within this function.</li>
+<li>Finally, we label our x and y axis using the <code>labs</code> function.</li>
+</ul>
+<p>Now, you may have noticed that our scatterplot has identified an issue with the data we have generated. The code we have used has produced a perfect linear relationship between <span class="math inline">\(temperature\)</span> and <span class="math inline">\(waste\)</span>. This does not seem realistic so we need to add some random noise to <span class="math inline">\(y\)</span>. We can do this by adding some randomly generated values from a normal distribution with mean 0. Think of this as adding residuals to our model.</p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">waste</span><span class="op">&lt;-</span><span class="fl">591</span> <span class="op">-</span> <span class="fl">10.65</span><span class="op">*</span><span class="va">temp</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">34</span>, mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">20</span><span class="op">)</span></code></pre></div>
+<p>We always want the model residuals to be centered on 0, so the mean within <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> should be 0. The level of variability within <span class="math inline">\(y\)</span> can be controlled via the standard deviation (<code>sd</code>). Again, this might take some trial and error to get something you are happy with.</p>
+<p>Let’s take a look at the scatterplot with our newly generated response.</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">data</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>waste<span class="op">=</span><span class="va">waste</span>, temp<span class="op">=</span><span class="va">temp</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">temp</span>, y<span class="op">=</span><span class="va">waste</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Average temperature"</span>, y<span class="op">=</span><span class="st">"Ice cream waste"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/xyscatter2-1.png" width="672"></div>
+<p>That looks better!</p>
+<p><strong>Exercise</strong>
+1. Change the values of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> in the code above to see how the relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> changes.
+2. Alter the value of <code>sd</code> in the code above to control the level of variation in the <span class="math inline">\(y\)</span>.</p>
+</div>
+</div>
+<div id="fitting-a-linear-model" class="section level2" number="3.3">
+<h2>
+<span class="header-section-number">3.3</span> Fitting a linear model<a class="anchor" aria-label="anchor" href="#fitting-a-linear-model"><i class="fas fa-link"></i></a>
+</h2>
+<p>Now that we have simulated values for <span class="math inline">\(temperature\)</span> and <span class="math inline">\(waste\)</span> we can now fit a linear model and generate output that can be used to create questions.</p>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">model</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">waste</span><span class="op">~</span><span class="va">temp</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = waste ~ temp)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -38.514 -11.412  -2.084  10.421  45.052 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 596.9391    11.8702   50.29  &lt; 2e-16 ***
+## temp        -10.9101     0.9153  -11.92 2.62e-13 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 18.85 on 32 degrees of freedom
+## Multiple R-squared:  0.8162, Adjusted R-squared:  0.8104 
+## F-statistic: 142.1 on 1 and 32 DF,  p-value: 2.62e-13</code></pre>
+<p>Note that the estimates for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are slightly different to the values we used to generate the data. This is because of the random noise we added when generating our response variable. The values are fairly similar though. Notice how these values correspond with the linear model used in the question at the top on the page, and how we have used the standard error from the output table when asking for a 95% CI for the slope parameter (although this may be beyond the scope for the AH stats cirriculum).</p>
+</div>
+<div id="adding-the-linear-model-line-to-a-scatterplot" class="section level2" number="3.4">
+<h2>
+<span class="header-section-number">3.4</span> Adding the linear model line to a scatterplot<a class="anchor" aria-label="anchor" href="#adding-the-linear-model-line-to-a-scatterplot"><i class="fas fa-link"></i></a>
+</h2>
+<p>We can now add our fitted model and 95% confidence interval to the scatterplot of our data using the following code.</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">temp</span>, y<span class="op">=</span><span class="va">waste</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Average temperature"</span>, y<span class="op">=</span><span class="st">"Ice cream waste"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>, se<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula 'y ~ x'</code></pre>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/xyscatter3-1.png" width="672"></div>
+<p>To generate this plot we have used the same code as previously and added the <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> with the following arguments:</p>
+<ul>
+<li>
+<code>method = lm</code> - fit a linear model line to the plot.</li>
+<li>
+<code>se = TRUE</code> - display a confidence interval around the line. This can be removed by setting <code>se=FALSE</code>.</li>
+</ul>
+</div>
+<div id="producing-model-diagnostics" class="section level2" number="3.5">
+<h2>
+<span class="header-section-number">3.5</span> Producing model diagnostics<a class="anchor" aria-label="anchor" href="#producing-model-diagnostics"><i class="fas fa-link"></i></a>
+</h2>
+<p>We can use the <code><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot()</a></code> function in the <code>ggfortify</code> library to create diagnostic plots for our linear model using <code>ggplot2</code> as follows:</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/modeldiag-1.png" width="672"></div>
+</div>
+<div id="calculating-quantities-of-interest" class="section level2" number="3.6">
+<h2>
+<span class="header-section-number">3.6</span> Calculating quantities of interest<a class="anchor" aria-label="anchor" href="#calculating-quantities-of-interest"><i class="fas fa-link"></i></a>
+</h2>
+<p>You can also calculate quantities such as <span class="math inline">\(S_{xx}, S_{yy}\)</span> and <span class="math inline">\(S_{xy}\)</span> to be used in questions for calcuating estimates by hand.</p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">S.xx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">temp</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">temp</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
+<span class="va">S.yy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">waste</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">waste</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
+<span class="va">S.xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">temp</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">temp</span><span class="op">)</span><span class="op">)</span> <span class="op">*</span> <span class="op">(</span><span class="va">waste</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">waste</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">r</span> <span class="op">&lt;-</span> <span class="va">S.xy</span><span class="op">/</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">S.xx</span><span class="op">*</span><span class="va">S.yy</span><span class="op">)</span><span class="op">)</span>
+<span class="va">beta</span> <span class="op">&lt;-</span> <span class="va">S.xy</span><span class="op">/</span><span class="va">S.xx</span>
+<span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">waste</span><span class="op">)</span> <span class="op">-</span> <span class="va">beta</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">temp</span><span class="op">)</span>
+
+<span class="va">r</span></code></pre></div>
+<pre><code>## [1] -0.9034156</code></pre>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">beta</span></code></pre></div>
+<pre><code>## [1] -10.91007</code></pre>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">alpha</span></code></pre></div>
+<pre><code>## [1] 596.9391</code></pre>
+</div>
+<div id="summary" class="section level2" number="3.7">
+<h2>
+<span class="header-section-number">3.7</span> Summary<a class="anchor" aria-label="anchor" href="#summary"><i class="fas fa-link"></i></a>
+</h2>
+<p>Using <code>R</code> to generate data can be a quick and simple way to create practice questions for students. It can also be helpful to demonstrate certain properties when introducing concepts in class. Another benefit is to allow the creation of multiple variants of the same question, all with slighty different data, and therefore slightly different answers. This can be particularly helpful for revision questions that students can attempt more than once, or in assessments so that all students have slightly different questions/answers.</p>
+<p>However, in general we would advise using real data when introducing/demonstrating concepts in class as this allows students to appreciate the use of statistics in real-life scenarios and also allows for discussions around dealing with messy data.</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="paper-1-example.html"><span class="header-section-number">2</span> 2021 Paper 1 Example</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#linear-model-example"><span class="header-section-number">3</span> Linear model example</a></li>
+<li><a class="nav-link" href="#question"><span class="header-section-number">3.1</span> Question</a></li>
+<li>
+<a class="nav-link" href="#generating-data"><span class="header-section-number">3.2</span> Generating data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#explanatory-variable"><span class="header-section-number">3.2.1</span> Explanatory variable</a></li>
+<li><a class="nav-link" href="#using-a-linear-model-to-generate-the-response"><span class="header-section-number">3.2.2</span> Using a linear model to generate the response</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#fitting-a-linear-model"><span class="header-section-number">3.3</span> Fitting a linear model</a></li>
+<li><a class="nav-link" href="#adding-the-linear-model-line-to-a-scatterplot"><span class="header-section-number">3.4</span> Adding the linear model line to a scatterplot</a></li>
+<li><a class="nav-link" href="#producing-model-diagnostics"><span class="header-section-number">3.5</span> Producing model diagnostics</a></li>
+<li><a class="nav-link" href="#calculating-quantities-of-interest"><span class="header-section-number">3.6</span> Calculating quantities of interest</a></li>
+<li><a class="nav-link" href="#summary"><span class="header-section-number">3.7</span> Summary</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Using R to generate data for questions</strong>" was written by Craig Alexander &amp; Eilidh Jack. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
